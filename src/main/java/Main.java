@@ -1,17 +1,12 @@
-import Characters.Beater;
-import Characters.Catcher;
-import Characters.Goalkeeper;
-import Characters.Hunter;
-import MagicAtributes.Bladger;
-import MagicAtributes.Quaffle;
-import MagicAtributes.Snitch;
-import Properties.FlyProperties.Proxy;
-import Teams.Team;
+import Inventory.*;
+import Inventory.Decorator.MagicAttributesDecorator;
+import Inventory.Decorator.SuperMagic;
+import Inventory.Iterator.PotionCountIterator;
 
 public class Main {
 
     public static void main(String[] argv){
-        Team Griffindor = new Team("Griffindor");
+       /* Team Griffindor = new Team("Griffindor");
         Team Slitherin = new Team("Slitherin");
 
         //init Griffindor
@@ -83,16 +78,16 @@ public class Main {
         Quaffle quaffle = new Quaffle();
         Snitch snitch = new Snitch();
 
-    /*    firstBladger.actionFly();
+    *//*    firstBladger.actionFly();
         secondBladger.actionFly();
         quaffle.actionFly();
         snitch.actionFly();
-        */
+
 
         //player
 
-       /* Griffindor.getGoalkeeper().getFly();
-        Griffindor.getCatcher().kill(Griffindor.getCatcher().getNamePlayer());*/
+        Griffindor.getGoalkeeper().getFly();
+        Griffindor.getCatcher().kill(Griffindor.getCatcher().getNamePlayer()); *//*
 
 
         //start play game
@@ -116,6 +111,46 @@ public class Main {
         System.out.println("Proxy");
         Proxy proxy = new Proxy();
         proxy.fly();
+*/
+
+        //Composite
+        Potion potion = new Potion();
+        Potion interiorPotion = new Potion();
+
+        interiorPotion.add(new BatWingMixture());
+
+
+        potion.add(new BatWing());
+        potion.add(new BatWing());
+        potion.add(new Basalt());
+        potion.add(interiorPotion);
+
+        potion.getName();
+
+
+        //Adapter
+        BatWing batWing = new BatWing();
+        AdapterBatWing adapterBatWing = new AdapterBatWing();
+        System.out.println(adapterBatWing.getMixture(batWing));
+
+
+        //Decorator
+        MagicAttributesDecorator magicAttributesDecorator = new MagicAttributesDecorator(new BatWing(), "Volatile power");
+        System.out.println(magicAttributesDecorator.getName());
+
+        //MagicAttributeIterator
+        PotionCountIterator potionCountIterator = new PotionCountIterator(potion);
+        for(int i = 0; i < potion.getPotionSize(); i++)
+            System.out.println(potionCountIterator.getNext().getName());
+        potionCountIterator.setCurrentPosition(0);
+
+        potionCountIterator.getNext();
+        potionCountIterator.remove();
+
+        System.out.println("After remove");
+
+        for(int i = 0; i < potion.getPotionSize(); i++)
+            System.out.println(potionCountIterator.getNext().getName());
 
 
 

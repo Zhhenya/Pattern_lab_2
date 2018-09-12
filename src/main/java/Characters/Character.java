@@ -13,8 +13,8 @@ import Teams.Team;
 public class Character{
     protected String nameCharacterPosition;
     private String namePlayer;
-    protected TryKillPlayer tryKillPlayer = new KillByRival();
-    protected BreakDown breakByPlayer = new BreakByPlayer();
+    private TryKillPlayer tryKillPlayer = new KillByRival();
+    private BreakDown breakByPlayer = new BreakByPlayer();
     protected Fly fly = new FlyWithBroom();
 
 
