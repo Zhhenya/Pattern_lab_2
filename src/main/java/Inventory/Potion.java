@@ -1,5 +1,7 @@
 package Inventory;
 
+import Inventory.Iterator.PotionCountIterator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +58,11 @@ public class Potion implements MagicAttributes {
     @Override
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+
+    public PotionCountIterator createIterator(){
+        PotionCountIterator potionCountIterator = new PotionCountIterator(this);
+        return potionCountIterator;
     }
 }

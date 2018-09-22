@@ -1,11 +1,18 @@
-import Inventory.*;
-import Inventory.Decorator.MagicAttributesDecorator;
-import Inventory.Decorator.SuperMagic;
-import Inventory.Iterator.PotionCountIterator;
+import Characters.Catcher;
+import Characters.Character;
+import javafx.animation.Animation;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-public class Main {
+public class Main extends Application {
 
-    public static void main(String[] argv){
+    public static void main(String[] args){
        /* Team Griffindor = new Team("Griffindor");
         Team Slitherin = new Team("Slitherin");
 
@@ -78,7 +85,7 @@ public class Main {
         Quaffle quaffle = new Quaffle();
         Snitch snitch = new Snitch();
 
-    *//*    firstBladger.actionFly();
+        firstBladger.actionFly();
         secondBladger.actionFly();
         quaffle.actionFly();
         snitch.actionFly();
@@ -87,7 +94,7 @@ public class Main {
         //player
 
         Griffindor.getGoalkeeper().getFly();
-        Griffindor.getCatcher().kill(Griffindor.getCatcher().getNamePlayer()); *//*
+        Griffindor.getCatcher().kill(Griffindor.getCatcher().getNamePlayer());
 
 
         //start play game
@@ -111,7 +118,6 @@ public class Main {
         System.out.println("Proxy");
         Proxy proxy = new Proxy();
         proxy.fly();
-*/
 
         //Composite
         Potion potion = new Potion();
@@ -139,10 +145,20 @@ public class Main {
         System.out.println(magicAttributesDecorator.getName());
 
         //MagicAttributeIterator
-        PotionCountIterator potionCountIterator = new PotionCountIterator(potion);
+        PotionCountIterator potionCountIterator = potion.createIterator();
         for(int i = 0; i < potion.getPotionSize(); i++)
             System.out.println(potionCountIterator.getNext().getName());
         potionCountIterator.setCurrentPosition(0);
+
+
+       *//* for(int i = potion.getPotionSize() - 1; i> 0; i--){
+            for(int j = 0; j < i; j++){
+                MagicAttributes prevPotion = potionCountIterator.getNext();
+                if(prevPotion.getName().compareTo(potionCountIterator.getNext().getName()) < 0){
+                    MagicAttributes temp =
+                }
+            }
+        }*//*
 
         potionCountIterator.getNext();
         potionCountIterator.remove();
@@ -152,10 +168,25 @@ public class Main {
         for(int i = 0; i < potion.getPotionSize(); i++)
             System.out.println(potionCountIterator.getNext().getName());
 
-
+*/
+        launch(args);
 
     }
 
 
-
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Catcher catcher = new Catcher(new ImageView(new Image("characters/witch/witch.png")),
+                new Duration(500), 9, 3, 0, 32, 32, 32);
+//        Animation spriteAnimation = new SpriteAnimation();
+//        spriteAnimation.setCycleCount(Animation.INDEFINITE);
+//        spriteAnimation.play();
+        catcher.spriteAnimation.setCycleCount(Animation.INDEFINITE);
+        catcher.spriteAnimation.play();
+        Group group = new Group(catcher.getImageView());
+        Character character = new Character(new ImageView(new Image("characters/witch/witch.png")),
+                new Duration(500), 9, 3, 0, 32, 32, 32);
+        primaryStage.setScene(new Scene(character));
+        primaryStage.show();
+    }
 }

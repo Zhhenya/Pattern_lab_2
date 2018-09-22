@@ -1,22 +1,54 @@
 package Characters;
 
-import Properties.ActionsForBalls;
-import Properties.BreakProperties.BreakByBall;
 import Properties.BreakProperties.BreakByPlayer;
 import Properties.BreakProperties.BreakDown;
 import Properties.FlyProperties.Fly;
 import Properties.FlyProperties.FlyWithBroom;
 import Properties.KillProperties.KillByRival;
 import Properties.KillProperties.TryKillPlayer;
-import Teams.Team;
+import SpriteAnimation.SpriteAnimation;
+import javafx.animation.Animation;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
-public class Character{
+public class Character extends Pane {
+
     protected String nameCharacterPosition;
     private String namePlayer;
     private TryKillPlayer tryKillPlayer = new KillByRival();
     private BreakDown breakByPlayer = new BreakByPlayer();
     protected Fly fly = new FlyWithBroom();
+    public Animation spriteAnimation;
 
+    public void moveX(double x){
+        boolean right =  x > 0 ? true : false;
+        for(int i = 0; i < Math.abs(x); i++){
+            if(right)
+                this.setTranslateX(this.getTranslateX() + 1);
+            else
+                this.setTranslateX(this.getTranslateX() - 1);
+        }
+    }
+
+    public void moveY(double y){
+        boolean down = y > 0 ? true : false;
+        for(int i = 0; i < Math.abs(y); i++){
+            if(down)
+                this.setTranslateY(this.getTranslateY() + 1);
+            else
+                this.setTranslateY(this.getTranslateY() - 1);
+        }
+    }
+
+    public Character(ImageView imageView, Duration duration, int numberOfFrames, int numberOfColumns, double offsetX, double offsetY, double width, double height) {
+        spriteAnimation = new SpriteAnimation(imageView, duration, numberOfFrames, numberOfColumns, offsetX, offsetY, width, height);
+        getChildren().add(imageView);
+    }
+
+    public ImageView getImageView(){
+        return ((SpriteAnimation) spriteAnimation).getImageView();
+    }
 
     public String getNamePlayer(){
         return namePlayer;
