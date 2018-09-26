@@ -1,4 +1,5 @@
 package Properties.FlyProperties;
+/*
 
 public class Proxy implements Fly{
     private FlyWithWings flyWithWings;
@@ -15,3 +16,4 @@ public class Proxy implements Fly{
         flyWithWings.fly();
     }
 }
+*/

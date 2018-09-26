@@ -1,14 +1,15 @@
 import Characters.Catcher;
-import Characters.Character;
-import javafx.animation.Animation;
+import Properties.FlyProperties.FlyWithBroom;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.awt.event.KeyEvent;
 
 public class Main extends Application {
 
@@ -140,7 +141,7 @@ public class Main extends Application {
         System.out.println(adapterBatWing.getMixture(batWing));
 
 
-        //Decorator
+        //FlyDecorator
         MagicAttributesDecorator magicAttributesDecorator = new MagicAttributesDecorator(new BatWing(), "Volatile power");
         System.out.println(magicAttributesDecorator.getName());
 
@@ -176,17 +177,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Catcher catcher = new Catcher(new ImageView(new Image("characters/witch/witch.png")),
-                new Duration(500), 9, 3, 0, 32, 32, 32);
-//        Animation spriteAnimation = new SpriteAnimation();
-//        spriteAnimation.setCycleCount(Animation.INDEFINITE);
-//        spriteAnimation.play();
-        catcher.spriteAnimation.setCycleCount(Animation.INDEFINITE);
-        catcher.spriteAnimation.play();
-        Group group = new Group(catcher.getImageView());
-        Character character = new Character(new ImageView(new Image("characters/witch/witch.png")),
-                new Duration(500), 9, 3, 0, 32, 32, 32);
-        primaryStage.setScene(new Scene(character));
+        Pane root = new Pane();
+        final int startSpeed = 5;
+
+        final FlyWithBroom flyWithBroomForCatcher = new FlyWithBroom();
+        flyWithBroomForCatcher.setImage(new Image("characters/witch/broom.gif"));
+
+
+        Catcher catcher = new Catcher();
+        catcher.setFly(flyWithBroomForCatcher);
+        Scene scene = new Scene(flyWithBroomForCatcher.getPane(), 500, 500);
+        Image newImage = new Image("characters/witch/witch1.gif");
+
+        scene.setOnKeyPressed(e ->{
+            flyWithBroomForCatcher.changeFly(e, startSpeed, newImage);
+        });
+
+        primaryStage.setScene(scene);
+
+
+
         primaryStage.show();
     }
 }

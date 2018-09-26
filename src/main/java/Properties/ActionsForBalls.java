@@ -9,7 +9,7 @@ public class ActionsForBalls {
     private int points;
     private int dangerous;
     private String ballName;
-
+    private int startSpeed;
     protected Fly fly;
     protected BreakDown breakDown;
     protected TryKillPlayer tryKillPlayer;
@@ -47,7 +47,7 @@ public class ActionsForBalls {
     }
 
     public void actionFly() {
-        fly.fly();
+        fly.fly(startSpeed);
     }
 
     public void actionBreakDown(String namePlayer){

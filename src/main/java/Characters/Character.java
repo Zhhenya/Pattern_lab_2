@@ -8,46 +8,34 @@ import Properties.KillProperties.KillByRival;
 import Properties.KillProperties.TryKillPlayer;
 import SpriteAnimation.SpriteAnimation;
 import javafx.animation.Animation;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class Character extends Pane {
+public class Character {
 
     protected String nameCharacterPosition;
     private String namePlayer;
     private TryKillPlayer tryKillPlayer = new KillByRival();
     private BreakDown breakByPlayer = new BreakByPlayer();
-    protected Fly fly = new FlyWithBroom();
-    public Animation spriteAnimation;
+    protected Fly fly;
+    private Image image;
 
-    public void moveX(double x){
-        boolean right =  x > 0 ? true : false;
-        for(int i = 0; i < Math.abs(x); i++){
-            if(right)
-                this.setTranslateX(this.getTranslateX() + 1);
-            else
-                this.setTranslateX(this.getTranslateX() - 1);
-        }
+    public void setFly(Fly fly) {
+        this.fly = fly;
     }
 
-    public void moveY(double y){
-        boolean down = y > 0 ? true : false;
-        for(int i = 0; i < Math.abs(y); i++){
-            if(down)
-                this.setTranslateY(this.getTranslateY() + 1);
-            else
-                this.setTranslateY(this.getTranslateY() - 1);
-        }
+
+
+    private int startSpeed;
+
+    public Image getImage(){
+        return image;
     }
 
-    public Character(ImageView imageView, Duration duration, int numberOfFrames, int numberOfColumns, double offsetX, double offsetY, double width, double height) {
-        spriteAnimation = new SpriteAnimation(imageView, duration, numberOfFrames, numberOfColumns, offsetX, offsetY, width, height);
-        getChildren().add(imageView);
-    }
-
-    public ImageView getImageView(){
-        return ((SpriteAnimation) spriteAnimation).getImageView();
+    public void setImage(Image image){
+        this.image = image;
     }
 
     public String getNamePlayer(){
@@ -71,7 +59,7 @@ public class Character extends Pane {
     }
 
     public void getFly(){
-         fly.fly();
+         fly.fly(startSpeed);
     }
 
     public void catchBall(String ballName, String playerName){

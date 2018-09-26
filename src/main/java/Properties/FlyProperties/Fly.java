@@ -1,5 +1,7 @@
 package Properties.FlyProperties;
 
+import SpriteAnimation.SpriteAnimation;
+
 public interface Fly {
-     void fly();
+     abstract int fly(int speed);
 }
