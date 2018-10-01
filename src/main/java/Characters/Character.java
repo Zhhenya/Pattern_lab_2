@@ -20,22 +20,30 @@ public class Character {
     private TryKillPlayer tryKillPlayer = new KillByRival();
     private BreakDown breakByPlayer = new BreakByPlayer();
     protected Fly fly;
-    private Image image;
+    private ImageView imageView;
+    private int health;
 
     public void setFly(Fly fly) {
         this.fly = fly;
     }
 
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     private int startSpeed;
 
-    public Image getImage(){
-        return image;
+    public ImageView getImage(){
+        return imageView;
     }
 
-    public void setImage(Image image){
-        this.image = image;
+    public void setImageView(ImageView imageView){
+        this.imageView = imageView;
     }
 
     public String getNamePlayer(){
@@ -59,7 +67,7 @@ public class Character {
     }
 
     public void getFly(){
-         fly.fly(startSpeed);
+         fly.fly();
     }
 
     public void catchBall(String ballName, String playerName){

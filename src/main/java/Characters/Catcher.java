@@ -5,7 +5,8 @@ import javafx.util.Duration;
 
 public class Catcher extends Character{
     public Catcher(){
-        nameCharacterPosition = "Catcher";
+        setHealth(2);
+        nameCharacterPosition = "Ловец";
     }
 
 

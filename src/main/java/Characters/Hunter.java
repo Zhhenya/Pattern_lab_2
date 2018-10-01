@@ -5,6 +5,6 @@ import javafx.util.Duration;
 
 public class Hunter extends Character {
     public Hunter(){
-        nameCharacterPosition = "Hunter";
+        nameCharacterPosition = "Нападающий";
     }
 }

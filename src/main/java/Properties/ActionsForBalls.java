@@ -3,18 +3,22 @@ package Properties;
 import Properties.BreakProperties.BreakDown;
 import Properties.FlyProperties.Fly;
 import Properties.KillProperties.TryKillPlayer;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 public class ActionsForBalls {
-    private double ballSize;
-    private int points;
-    private int dangerous;
-    private String ballName;
-    private int startSpeed;
+    public int ballSize;
+    public int points;
+    public int dangerous;
+    public String ballName;
+    public int startSpeed;
     protected Fly fly;
     protected BreakDown breakDown;
     protected TryKillPlayer tryKillPlayer;
+    public ImageView imageView;
 
-    public double getBallSize() {
+   /* public int getBallSize() {
         return ballSize;
     }
 
@@ -28,9 +32,9 @@ public class ActionsForBalls {
 
     public String getBallName() {
         return ballName;
-    }
+    }*/
 
-    protected void setBallSize(double ballSize) {
+ /*   protected void setBallSize(double ballSize) {
         this.ballSize = ballSize;
     }
 
@@ -44,10 +48,18 @@ public class ActionsForBalls {
 
     protected void setBallName(String ballName) {
         this.ballName = ballName;
+    }*/
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 
     public void actionFly() {
-        fly.fly(startSpeed);
+        fly.fly();
     }
 
     public void actionBreakDown(String namePlayer){

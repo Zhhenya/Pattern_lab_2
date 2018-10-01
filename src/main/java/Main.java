@@ -1,10 +1,18 @@
 import Characters.Catcher;
+import Characters.CatcherAdapter;
+import MagicAtributes.DecoratorForBallDangerous;
+import MagicAtributes.DecoratorForBalls;
+import MagicAtributes.Snitch;
 import Properties.FlyProperties.FlyWithBroom;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -177,21 +185,42 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Pane root = new Pane();
-        final int startSpeed = 5;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = (Parent) loader.load(getClass().getResourceAsStream("forms/mainForm.fxml"));
+        Scene scene = new Scene(root);
+/*
 
-        final FlyWithBroom flyWithBroomForCatcher = new FlyWithBroom();
-        flyWithBroomForCatcher.setImage(new Image("characters/witch/broom.gif"));
+        Snitch snitch = new Snitch();
+     //   root.getChildren().add(snitch.getImageView());
 
 
-        Catcher catcher = new Catcher();
-        catcher.setFly(flyWithBroomForCatcher);
-        Scene scene = new Scene(flyWithBroomForCatcher.getPane(), 500, 500);
-        Image newImage = new Image("characters/witch/witch1.gif");
+      //  root.getChildren().add(catcher.getImage());
+
+
 
         scene.setOnKeyPressed(e ->{
-            flyWithBroomForCatcher.changeFly(e, startSpeed, newImage);
+            if(e.getCode() == KeyCode.SPACE) {
+                DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
+                ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(4);
+                if (snitch.getDangerous() > 1) {
+                    root.getChildren().remove(root.getChildren().size() - 1);
+                    snitch.setImageView(new ImageView(new Image("characters/balls/snitch2.gif")));
+                    snitch.getImageView().setLayoutX(100);
+                    snitch.getImageView().setLayoutY(-50);
+                    root.getChildren().add(snitch.getImageView());
+                }
+            }
+          if(e.getCode() == KeyCode.DOWN){
+              CatcherAdapter catcherAdapter = new CatcherAdapter(catcher);
+              catcherAdapter.addHealth();
+              catcher.setImageView(new ImageView(new Image("characters/witch/broom.gif")));
+              root.getChildren().remove(root.getChildren().size() - 1);
+              root.getChildren().add(catcher.getImage());
+          }
         });
+
+
+*/
 
         primaryStage.setScene(scene);
 

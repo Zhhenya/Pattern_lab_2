@@ -17,9 +17,8 @@ public class FlyWithBroom extends Pane implements Fly {
 
 
     @Override
-    public int fly(int speed) {
+    public void fly() {
         System.out.println("Fly with broom");
-        return speed;
     }
 
 
