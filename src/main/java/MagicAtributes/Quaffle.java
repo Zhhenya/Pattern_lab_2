@@ -1,5 +1,6 @@
 package MagicAtributes;
 
+import Box.BoxIterator;
 import Properties.ActionsForBalls;
 import Properties.BreakProperties.BreakByBall;
 import Properties.FlyProperties.FlyForBall;
@@ -56,5 +57,10 @@ public class Quaffle extends ActionsForBalls implements MagicAttributes {
     @Override
     public String getBallName() {
         return ballName;
+    }
+
+    @Override
+    public BoxIterator createBoxIterator() {
+        return null;
     }
 }

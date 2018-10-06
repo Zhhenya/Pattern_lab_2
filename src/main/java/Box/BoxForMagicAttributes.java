@@ -1,12 +1,13 @@
 package Box;
 
 import MagicAtributes.MagicAttributes;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BoxForMagicAttributes implements MagicAttributes, Box {
+public class BoxForMagicAttributes implements MagicAttributes {
     private List<MagicAttributes> magicAttributes = new ArrayList<>();
     private String boxName;
 
@@ -94,6 +95,16 @@ public class BoxForMagicAttributes implements MagicAttributes, Box {
             allNames += "\n";
         }
         return allNames;
+    }
+
+    @Override
+    public ImageView getImageView() {
+        return null;
+    }
+
+    @Override
+    public void setImageView(ImageView imageView) {
+
     }
 
     public String getBallsInfo() {

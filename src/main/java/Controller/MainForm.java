@@ -44,6 +44,12 @@ public class MainForm {
                 break;
             case 5: forthFrame();
                 break;
+            case 6: fifthFrame();
+                break;
+            case 7:sixFrame();
+                break;
+            case 8:sevenFrame();
+                break;
 
         }
     }
@@ -77,10 +83,6 @@ public class MainForm {
     public void secondFrame() {
         remove();
         remove();
-   /*     ImageView imageView = new ImageView(new Image("images/magic.gif"));
-        imageView.setLayoutX(150);
-        pane.getChildren().addAll(imageView);
-*/
         CatcherAdapter catcherAdapter = new CatcherAdapter(catcher);
         catcherAdapter.addHealth();
         catcher.setImageView(new ImageView(new Image("images/harry.png")));
@@ -100,17 +102,25 @@ public class MainForm {
         imageView.setLayoutY(50);
         pane.getChildren().add(imageView);
         getListOfMagicAttribute();
-        findAllMagicAttributes();
+        BoxIterator boxIterator = boxForMagicAttributes.createBoxIterator();
+        boxForMagicAttributes.setBoxName("Общая коробка");
+        boxIterator.setBoxForMagicAttributes(boxForMagicAttributes);
+        findAllMagicAttributes(boxIterator);
         countOfFrames++;
 
     }
 
-    private void findAllMagicAttributes(){
-        BoxIterator boxIterator = boxForMagicAttributes.createBoxIterator();
-        boxIterator.setBoxForMagicAttributes(boxForMagicAttributes);
+    public void findAllMagicAttributes(BoxIterator boxIterator){
+        characteristics.appendText("\n\n" + boxIterator.getBox().getBoxName() + "\n");
         while(boxIterator.hasNext()) {
             MagicAttributes attributes = boxIterator.getNext();
-            getInfoAboutBall(attributes);
+            BoxIterator boxIterator1 = attributes.createBoxIterator();
+            if(boxIterator1 != null) {
+                boxIterator1.setBoxForMagicAttributes((BoxForMagicAttributes) attributes);
+                findAllMagicAttributes(boxIterator1);
+            }
+            else
+                getInfoAboutBall(attributes);
         }
     }
 
@@ -121,24 +131,50 @@ public class MainForm {
         snitch.getImageView().setLayoutX(250);
         pane.getChildren().add(snitch.getImageView());
         dialog.setText("Ой! Что это?");
-        characteristics.setText("\n\n");
+        characteristics.setText("");
         getInfoAboutBall(snitch);
-        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
-        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(4);
         countOfFrames++;
     }
 
     public void forthFrame() {
         remove();
         dialog.setText("Кто-то заколдовал снитч!");
-        snitch.setImageView(new ImageView(new Image("characters/balls/snitch3.gif")));
-        snitch.getImageView().setLayoutX(50);
-        snitch.getImageView().setLayoutY(-20);
+        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
+        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(4);
+        pane.getChildren().add(snitch.getImageView());
         characteristics.setText("\n");
         getInfoAboutBall(snitch);
-        pane.getChildren().add(snitch.getImageView());
         countOfFrames++;
 
+    }
+    public void fifthFrame(){
+        remove();
+        DecoratorForBallsDangerousMinus decoratorForBallsDangerousMinus = new DecoratorForBallsDangerousMinus(snitch);
+        ((DecoratorForBallsDangerousMinus) decoratorForBallsDangerousMinus).addDangerous(3);
+        pane.getChildren().add(snitch.getImageView());
+        characteristics.setText("");
+        getInfoAboutBall(snitch);
+        countOfFrames++;
+    }
+    public void sixFrame(){
+        remove();
+        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
+        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(16);
+        pane.getChildren().add(snitch.getImageView());
+        characteristics.setText("\n");
+        getInfoAboutBall(snitch);
+        countOfFrames++;
+    }
+
+
+    public void sevenFrame(){
+        remove();
+        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
+        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(50);
+        pane.getChildren().add(snitch.getImageView());
+        characteristics.setText("\n");
+        getInfoAboutBall(snitch);
+        countOfFrames++;
     }
 
 
@@ -161,41 +197,45 @@ public class MainForm {
         characteristics.appendText("Опасность: "  + balls.getDangerous() + "\n");
     }
 
+  /*  public void getInfoAboutBallConsole(MagicAttributes balls){
+        //  characteristics.setText("");
+        System.out.println("Мяч\n");
+        System.out.println("Название: " + balls.getBallName());
+        System.out.println("Размер: " + balls.getBallSize());
+        System.out.println("Количество очков: " + balls.getPoints());
+        System.out.println("Опасность: "  + balls.getDangerous());
+    }*/
+
 
     private void getListOfMagicAttribute(){
         BoxForMagicAttributes box = new BoxForMagicAttributes();
         box.setBoxName("Мячи для тренировок");
         Snitch snitch1 =  new Snitch();
-        snitch1.setBallName("Снитч тренировочный");
-        snitch1.setBallSize(10);
-        snitch1.setDangerous(3);
-        snitch1.setPoints(150);
+        createBall(snitch1, "Снитч тренировочный", 10, 3, 150);
 
         Bladger bladger1 =  new Bladger();
-        bladger1.setBallName("Бладжер 1 тренировочный");
-        bladger1.setBallSize(40);
-        bladger1.setDangerous(45);
-        bladger1.setPoints(2);
+        createBall(bladger1, "Бладжер 1 тренировочный", 40, 45, 2);
 
         Bladger bladger2 =  new Bladger();
-        bladger2.setBallName("Бладжер 2 тренировочный");
-        bladger2.setBallSize(55);
-        bladger2.setDangerous(50);
-        bladger2.setPoints(2);
+        createBall(bladger2, "Бладжер 2 тренировочный", 55, 50, 2);
 
         Quaffle quaffle1 = new Quaffle();
-        quaffle1.setBallName("Квофл тренировочный");
-        quaffle1.setBallSize(25);
-        quaffle1.setDangerous(10);
-        quaffle1.setPoints(10);
+        createBall(quaffle1, "Квофл тренировочный", 25, 10, 10);
 
 
         box.add(snitch1, bladger1, bladger2, quaffle1);
-        snitch.setBallName("Снитч игровой");
-        bladgerFirst.setBallName("Бладжер игровой (черный)");
-        bladgerSecond.setBallName("Бладжер игровой (красный)");
-        quaffle.setBallName("Квофл игровой");
-        boxForMagicAttributes.add(snitch, quaffle, bladgerFirst, bladgerSecond);
+        createBall(snitch, "Золотой Снитч игровой", 10, 1, 150);
+        createBall(bladgerFirst, "Бладжер игровой (черный)", 40, 60, 0);
+        createBall(bladgerSecond, "Бладжер игровой (красный)", 40, 60, 0);
+        createBall(quaffle, "Квофл игровой", 25, 10, 10);
+        boxForMagicAttributes.add(snitch, quaffle, bladgerFirst, bladgerSecond, box);
+    }
+
+    private void createBall(MagicAttributes magicAttributes, String name, int ballSize, int dangerous, int points){
+        magicAttributes.setBallName(name);
+        magicAttributes.setBallSize(ballSize);
+        magicAttributes.setDangerous(dangerous);
+        magicAttributes.setPoints(points);
     }
 
 

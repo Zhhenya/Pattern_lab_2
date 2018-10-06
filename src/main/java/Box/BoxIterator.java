@@ -11,6 +11,10 @@ public class BoxIterator implements Iterator {
         this.box = box;
     }
 
+    public BoxForMagicAttributes getBox() {
+        return box;
+    }
+
     @Override
     public boolean hasNext() {
         if(currentPosition < box.getMagicAttributes().size())

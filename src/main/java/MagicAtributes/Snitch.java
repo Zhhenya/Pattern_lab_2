@@ -1,5 +1,6 @@
 package MagicAtributes;
 
+import Box.BoxIterator;
 import Properties.ActionsForBalls;
 import Properties.BreakProperties.BreakByBall;
 import Properties.FlyProperties.FlyWithWings;
@@ -19,6 +20,16 @@ public class Snitch extends ActionsForBalls implements MagicAttributes{
         tryKillPlayer = new KillWithABall();
 
 
+    }
+
+    @Override
+    public ImageView getImageView() {
+        return super.getImageView();
+    }
+
+    @Override
+    public void setImageView(ImageView imageView) {
+        super.setImageView(imageView);
     }
 
     @Override
@@ -61,5 +72,10 @@ public class Snitch extends ActionsForBalls implements MagicAttributes{
     @Override
     public String getBallName() {
         return ballName;
+    }
+
+    @Override
+    public BoxIterator createBoxIterator() {
+        return null;
     }
 }

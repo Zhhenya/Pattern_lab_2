@@ -1,6 +1,7 @@
 package MagicAtributes;
 
 import Box.BoxIterator;
+import javafx.scene.image.ImageView;
 
 public interface MagicAttributes {
     void setBallName(String name);
@@ -14,6 +15,9 @@ public interface MagicAttributes {
     String getBallName();
 
 
-    //BoxIterator createBoxIterator();
+    ImageView getImageView();
+    void setImageView(ImageView imageView);
+
+    BoxIterator createBoxIterator();
 
 }

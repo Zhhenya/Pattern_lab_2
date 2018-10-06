@@ -188,40 +188,6 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         Parent root = (Parent) loader.load(getClass().getResourceAsStream("forms/mainForm.fxml"));
         Scene scene = new Scene(root);
-/*
-
-        Snitch snitch = new Snitch();
-     //   root.getChildren().add(snitch.getImageView());
-
-
-      //  root.getChildren().add(catcher.getImage());
-
-
-
-        scene.setOnKeyPressed(e ->{
-            if(e.getCode() == KeyCode.SPACE) {
-                DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
-                ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(4);
-                if (snitch.getDangerous() > 1) {
-                    root.getChildren().remove(root.getChildren().size() - 1);
-                    snitch.setImageView(new ImageView(new Image("characters/balls/snitch2.gif")));
-                    snitch.getImageView().setLayoutX(100);
-                    snitch.getImageView().setLayoutY(-50);
-                    root.getChildren().add(snitch.getImageView());
-                }
-            }
-          if(e.getCode() == KeyCode.DOWN){
-              CatcherAdapter catcherAdapter = new CatcherAdapter(catcher);
-              catcherAdapter.addHealth();
-              catcher.setImageView(new ImageView(new Image("characters/witch/broom.gif")));
-              root.getChildren().remove(root.getChildren().size() - 1);
-              root.getChildren().add(catcher.getImage());
-          }
-        });
-
-
-*/
-
         primaryStage.setScene(scene);
 
 

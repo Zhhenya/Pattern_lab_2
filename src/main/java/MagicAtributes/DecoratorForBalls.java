@@ -1,5 +1,8 @@
 package MagicAtributes;
 
+import Box.BoxIterator;
+import javafx.scene.image.ImageView;
+
 public class DecoratorForBalls implements MagicAttributes {
     MagicAttributes magicAttributes;
 
@@ -47,6 +50,21 @@ public class DecoratorForBalls implements MagicAttributes {
 
     @Override
     public String getBallName() {
+        return null;
+    }
+
+    @Override
+    public ImageView getImageView() {
+        return null;
+    }
+
+    @Override
+    public void setImageView(ImageView imageView) {
+
+    }
+
+    @Override
+    public BoxIterator createBoxIterator() {
         return null;
     }
 
