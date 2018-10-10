@@ -14,8 +14,17 @@ public class Team {
     private Catcher catcher;
     private Beater firstBeater;
     private Beater secondBeater;
+    int countOfPoints = 0;
 
     public Team(){}
+
+    public void countPoints(int points){
+        countOfPoints += points;
+    }
+
+    public int getCountOfPoints() {
+        return countOfPoints;
+    }
 
     public Team(String teamName){
         this.teamName = teamName;

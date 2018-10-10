@@ -1,5 +1,6 @@
 package Characters;
 
+import MagicAtributes.MagicAttributes;
 import Properties.BreakProperties.BreakByPlayer;
 import Properties.BreakProperties.BreakDown;
 import Properties.FlyProperties.Fly;
@@ -70,21 +71,25 @@ public abstract class Character {
          fly.fly();
     }
 
-    public void catchBall(String ballName, String playerName){
-        System.out.println(playerName + " caught the " + ballName);
+    public int catchBall(MagicAttributes ball){
+        System.out.println(this.namePlayer + " поймал " + ball.getBallName());
+        if(ball.getPoints() == 150)
+            return ball.getPoints();
+        else
+            return 0;
     }
 
     public void hitBall(String ballName, String playerName){
-        System.out.println(playerName + " hit the " + ballName);
+        System.out.println(playerName + " отбил " + ballName);
     }
 
     public void dodgeBall(String ballName, String playerName){
         System.out.println(playerName + " dodge the " + ballName);
     }
 
-    public void goal(String playerName, String ballName, int ballPoints, String teamName){
-        System.out.println(playerName + " goal " + ballName);
-        System.out.println(teamName + " gets " + ballPoints + " points");
+    public void goal(String playerName, MagicAttributes ball, String teamName){
+        System.out.println(playerName + " забил гол " + ball.getBallName());
+        System.out.println(teamName + " получает " + ball.getPoints() + " points");
     }
 
 

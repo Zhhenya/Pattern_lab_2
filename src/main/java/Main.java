@@ -1,3 +1,7 @@
+import Controller.Facade;
+import Controller.MainForm;
+import Teams.Team;
+import UI.ConsoleUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -118,12 +122,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = (Parent) loader.load(getClass().getResourceAsStream("forms/mainForm.fxml"));
+        Facade facade = new Facade();
+       /* Parent root = (Parent) loader.load(getClass().getResourceAsStream("forms/mainForm.fxml"));
+        MainForm mainForm = loader.getController();
+        mainForm.setFacade(facade);
         Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene);*/
+        ConsoleUI consoleUI = new ConsoleUI(facade);
+        consoleUI.start();
 
 
 
-        primaryStage.show();
+
+
+        /*primaryStage.show();*/
     }
 }
