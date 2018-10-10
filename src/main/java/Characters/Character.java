@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class Character {
+public abstract class Character {
 
     protected String nameCharacterPosition;
     private String namePlayer;

@@ -3,8 +3,10 @@ package Controller;
 import Box.BoxForMagicAttributes;
 import Box.BoxIterator;
 import Characters.Catcher;
-import Characters.CatcherAdapter;
+import Characters.HealthAdapterForPlayer;
 import MagicAtributes.*;
+import UI.GUI;
+import UI.UI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -24,12 +26,16 @@ public class MainForm {
     public TextArea dialog;
     public TextArea characteristics;
     private int countOfFrames;
-    Catcher catcher = new Catcher();
+
+    GUI ui = new GUI();
+
+   /* Catcher catcher = new Catcher();
     Snitch snitch = new Snitch();
     Quaffle quaffle = new Quaffle();
     Bladger bladgerFirst = new Bladger();
     Bladger bladgerSecond = new Bladger();
-    BoxForMagicAttributes boxForMagicAttributes = new BoxForMagicAttributes();
+    BoxForMagicAttributes boxForMagicAttributes = new BoxForMagicAttributes();*/
+    private Facade facade = new Facade();
 
 
     public void nextFrame(ActionEvent actionEvent) {
@@ -48,7 +54,7 @@ public class MainForm {
                 break;
             case 7:sixFrame();
                 break;
-            case 8:sevenFrame();
+            case 8:sixFrame();
                 break;
 
         }
@@ -57,10 +63,13 @@ public class MainForm {
 
     @FXML
     private void initialize() {
-        pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+      /*  pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         ImageView imageView = new ImageView(new Image("images/say.jpg"));
         imageView.setLayoutX(150);
-        pane.getChildren().add(imageView);
+        pane.getChildren().add(imageView); */
+
+        ui.startGame();
+        pane.getChildren().add(ui.getImageView());
         dialog.setText("Объявляю матч открытым!!!");
         countOfFrames++;
     }
@@ -83,11 +92,7 @@ public class MainForm {
     public void secondFrame() {
         remove();
         remove();
-        CatcherAdapter catcherAdapter = new CatcherAdapter(catcher);
-        catcherAdapter.addHealth();
-        catcher.setImageView(new ImageView(new Image("images/harry.png")));
-        catcher.getImage().setLayoutX(150);
-        catcher.getImage().setLayoutY(50);
+        facade.applyAdapter(catcher, new ImageView(new Image("images/harry.png")));
         getInfoAboutCatcher();
         pane.getChildren().addAll(catcher.getImage());
         dialog.setText("Он может играть Теперь игроки готовы!!! \n Выпускаем мячи. Игра началась");
@@ -139,8 +144,7 @@ public class MainForm {
     public void forthFrame() {
         remove();
         dialog.setText("Кто-то заколдовал снитч!");
-        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
-        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(4);
+        facade.applyDecoratorDangerous(snitch);
         pane.getChildren().add(snitch.getImageView());
         characteristics.setText("\n");
         getInfoAboutBall(snitch);
@@ -149,8 +153,7 @@ public class MainForm {
     }
     public void fifthFrame(){
         remove();
-        DecoratorForBallsDangerousMinus decoratorForBallsDangerousMinus = new DecoratorForBallsDangerousMinus(snitch);
-        ((DecoratorForBallsDangerousMinus) decoratorForBallsDangerousMinus).addDangerous(3);
+        facade.applyDecoratorMinus(snitch);
         pane.getChildren().add(snitch.getImageView());
         characteristics.setText("");
         getInfoAboutBall(snitch);
@@ -158,25 +161,12 @@ public class MainForm {
     }
     public void sixFrame(){
         remove();
-        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
-        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(16);
+        facade.applyDecoratorDangerous(snitch);
         pane.getChildren().add(snitch.getImageView());
         characteristics.setText("\n");
         getInfoAboutBall(snitch);
         countOfFrames++;
     }
-
-
-    public void sevenFrame(){
-        remove();
-        DecoratorForBalls decoratorForBalls = new DecoratorForBallDangerous(snitch);
-        ((DecoratorForBallDangerous) decoratorForBalls).addDangerous(50);
-        pane.getChildren().add(snitch.getImageView());
-        characteristics.setText("\n");
-        getInfoAboutBall(snitch);
-        countOfFrames++;
-    }
-
 
     private void remove() {
         pane.getChildren().remove(pane.getChildren().size() - 1);
@@ -189,7 +179,6 @@ public class MainForm {
         characteristics.appendText("Здоровье: "  + catcher.getHealth() + "\n");
     }
     public void getInfoAboutBall(MagicAttributes balls){
-      //  characteristics.setText("");
         characteristics.appendText("Мяч\n");
         characteristics.appendText("Название: " + balls.getBallName() + "\n");
         characteristics.appendText("Размер: " + balls.getBallSize() + "\n");
@@ -211,32 +200,17 @@ public class MainForm {
         BoxForMagicAttributes box = new BoxForMagicAttributes();
         box.setBoxName("Мячи для тренировок");
         Snitch snitch1 =  new Snitch();
-        createBall(snitch1, "Снитч тренировочный", 10, 3, 150);
-
         Bladger bladger1 =  new Bladger();
-        createBall(bladger1, "Бладжер 1 тренировочный", 40, 45, 2);
-
         Bladger bladger2 =  new Bladger();
-        createBall(bladger2, "Бладжер 2 тренировочный", 55, 50, 2);
-
         Quaffle quaffle1 = new Quaffle();
-        createBall(quaffle1, "Квофл тренировочный", 25, 10, 10);
 
-
+        facade.createBallForOneTraining(snitch1, bladger1, bladger2, quaffle1);
         box.add(snitch1, bladger1, bladger2, quaffle1);
-        createBall(snitch, "Золотой Снитч игровой", 10, 1, 150);
-        createBall(bladgerFirst, "Бладжер игровой (черный)", 40, 60, 0);
-        createBall(bladgerSecond, "Бладжер игровой (красный)", 40, 60, 0);
-        createBall(quaffle, "Квофл игровой", 25, 10, 10);
+        facade.createBallForOneGame(snitch, bladgerFirst, bladgerSecond, quaffle);
         boxForMagicAttributes.add(snitch, quaffle, bladgerFirst, bladgerSecond, box);
     }
 
-    private void createBall(MagicAttributes magicAttributes, String name, int ballSize, int dangerous, int points){
-        magicAttributes.setBallName(name);
-        magicAttributes.setBallSize(ballSize);
-        magicAttributes.setDangerous(dangerous);
-        magicAttributes.setPoints(points);
-    }
+
 
 
 

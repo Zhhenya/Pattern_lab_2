@@ -1,12 +1,12 @@
 package Characters;
 
-public class CatcherAdapter extends Catcher {
-    Catcher catcher;
-    public CatcherAdapter(Catcher catcher){
+public class HealthAdapterForPlayer extends Catcher {
+    Character catcher;
+    public HealthAdapterForPlayer(Character catcher){
         this.catcher = catcher;
     }
 
-    public Catcher addHealth(){
+    public Character addHealth(){
         if(catcher.getHealth() < 3)
             catcher.setHealth(catcher.getHealth() + 3);
         return catcher;

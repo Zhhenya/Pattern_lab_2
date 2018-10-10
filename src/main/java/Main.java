@@ -1,23 +1,8 @@
-import Characters.Catcher;
-import Characters.CatcherAdapter;
-import MagicAtributes.DecoratorForBallDangerous;
-import MagicAtributes.DecoratorForBalls;
-import MagicAtributes.Snitch;
-import Properties.FlyProperties.FlyWithBroom;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.awt.event.KeyEvent;
 
 public class Main extends Application {
 
@@ -27,65 +12,12 @@ public class Main extends Application {
 
         //init Griffindor
 
-        Hunter hunter = new Hunter();
-        hunter.setNamePlayer("Kethy Bell");
-        Griffindor.setFirstHunter(hunter);
-
-        hunter = new Hunter();
-        hunter.setNamePlayer("Demelza Robins");
-        Griffindor.setSecondHunter(hunter);
-
-        hunter = new Hunter();
-        hunter.setNamePlayer("Dzhinny Wizli");
-        Griffindor.setThirdHunter(hunter);
-
-        Beater beater = new Beater();
-        beater.setNamePlayer("Richy Kut");
-        Griffindor.setFirstBeater(beater);
-
-        beater = new Beater();
-        beater.setNamePlayer("Dzhimmy Picks");
-        Griffindor.setSecondBeater(beater);
-
-        Catcher catcher = new Catcher();
-        catcher.setNamePlayer("Harry Potter");
-        Griffindor.setCatcher(catcher);
-
-        Goalkeeper goalkeeper = new Goalkeeper();
-        goalkeeper.setNamePlayer("Ron Wizly");
-        Griffindor.setGoalkeeper(goalkeeper);
 
 
 
         //init Slitherin
 
-        hunter = new Hunter();
-        hunter.setNamePlayer("Urghart");
-        Slitherin.setFirstHunter(hunter);
 
-        hunter = new Hunter();
-        hunter.setNamePlayer("Veizy");
-        Slitherin.setSecondHunter(hunter);
-
-        hunter = new Hunter();
-        hunter.setNamePlayer("Kassius Worringthon");
-        Slitherin.setThirdHunter(hunter);
-
-        beater = new Beater();
-        beater.setNamePlayer("Vinsent Greb");
-        Slitherin.setFirstBeater(beater);
-
-        beater = new Beater();
-        beater.setNamePlayer("Greggory Goil");
-        Slitherin.setSecondBeater(beater);
-
-        catcher = new Catcher();
-        catcher.setNamePlayer("Draco Malfoy");
-        Slitherin.setCatcher(catcher);
-
-        goalkeeper = new Goalkeeper();
-        goalkeeper.setNamePlayer("Mailz Bletchly");
-        Slitherin.setGoalkeeper(goalkeeper);
 
         //init balls
 
