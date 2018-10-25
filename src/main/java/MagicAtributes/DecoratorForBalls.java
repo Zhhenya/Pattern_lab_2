@@ -16,10 +16,6 @@ public class DecoratorForBalls implements MagicAttributes {
         magicAttributes.setBallName(name);
     }
 
-    @Override
-    public void setBallSize(int ballSize) {
-        magicAttributes.setBallSize(ballSize);
-    }
 
     @Override
     public MagicAttributes setDangerous(int dangerous) {
@@ -28,9 +24,8 @@ public class DecoratorForBalls implements MagicAttributes {
     }
 
     @Override
-    public MagicAttributes setPoints(int points) {
-        magicAttributes.setPoints(points);
-        return magicAttributes;
+    public void setBallProperties(BallProperties ballProperties) {
+
     }
 
     @Override

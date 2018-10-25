@@ -1,12 +1,16 @@
 import Controller.Facade;
 import Controller.MainForm;
 import Teams.Team;
+import UI.ConsoleStart;
 import UI.ConsoleUI;
+import UI.UIStart;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -121,20 +125,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
         Facade facade = new Facade();
-       /* Parent root = (Parent) loader.load(getClass().getResourceAsStream("forms/mainForm.fxml"));
-        MainForm mainForm = loader.getController();
-        mainForm.setFacade(facade);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);*/
-        ConsoleUI consoleUI = new ConsoleUI(facade);
-        consoleUI.start();
+        UI.Application application;
+        int ui = 0;
 
 
+        if(ui == 0) {
+            application = new UIStart();
+          //  ((UIStart) application).setPrimaryStage(primaryStage);
+        }
+        else
+            if(ui == 1)
+                application = new ConsoleStart();
+            else {
+                System.out.println("неверный выбор");
+                return;
+            }
 
-
-
-        /*primaryStage.show();*/
+        application.startApplication(facade);
     }
 }

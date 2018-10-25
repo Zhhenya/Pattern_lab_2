@@ -3,46 +3,14 @@ package MagicAtributes;
 
 import Box.BoxIterator;
 import Properties.*;
-import Properties.BreakProperties.BreakByBall;
-import Properties.FlyProperties.FlyForBall;
-import Properties.KillProperties.KillWithABall;
 
 public class Bladger extends ActionsForBalls implements MagicAttributes {
-    public Bladger(){
-        fly = new FlyForBall();
-        breakDown = new BreakByBall();
-        tryKillPlayer = new KillWithABall();
-        setBallName("Bladger");
-        setBallSize(35);
-        setDangerous(10);
-        setPoints(0);
-    }
+    public Bladger(){}
 
     @Override
-    public void setBallName(String name) {
-        this.ballName = name;
-    }
-
-    @Override
-    public void setBallSize(int ballSizesize) {
-        this.ballSize = ballSizesize;
-    }
-
-    @Override
-    public Bladger setDangerous(int dangerous) {
+    public MagicAttributes setDangerous(int dangerous) {
         this.dangerous = dangerous;
         return this;
-    }
-
-    @Override
-    public Bladger setPoints(int points) {
-        this.points = points;
-        return this;
-    }
-
-    @Override
-    public int getBallSize() {
-        return ballSize;
     }
 
     @Override
@@ -51,13 +19,18 @@ public class Bladger extends ActionsForBalls implements MagicAttributes {
     }
 
     @Override
-    public int getPoints() {
-        return points;
+    public String getBallName() {
+        return super.getBallName();
     }
 
     @Override
-    public String getBallName() {
-        return ballName;
+    public void setBallName(String ballName) {
+        super.setBallName(ballName);
+    }
+
+    @Override
+    public int getBallSize() {
+        return getBallProperties().getBallSize();
     }
 
     @Override

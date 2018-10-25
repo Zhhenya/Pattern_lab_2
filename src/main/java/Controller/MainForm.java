@@ -8,7 +8,10 @@ import Characters.HealthAdapterForPlayer;
 import MagicAtributes.*;
 import UI.UI;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -18,12 +21,16 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainForm implements UI {
     public Button nextButton;
     public Pane pane;
     public TextArea dialog;
     public TextArea characteristics;
+    public Button choose;
     private int countOfFrames;
 
 
@@ -164,5 +171,25 @@ public class MainForm implements UI {
         characteristics.appendText("Размер: " + balls.getBallSize() + "\n");
         characteristics.appendText("Количество очков: " + balls.getPoints()+ "\n");
         characteristics.appendText("Опасность: "  + balls.getDangerous() + "\n");
+    }
+
+    public void chooseOutfit(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/forms/outfitForm.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+          /*  OutfitForm outfitForm = loader.getController();
+            outfitForm.(facade);*/
+            Scene scene = new Scene(root);
+            Stage changeOutfitWindow = new Stage();
+            changeOutfitWindow.setScene(scene);
+            changeOutfitWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 }

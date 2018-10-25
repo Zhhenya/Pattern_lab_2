@@ -1,55 +1,35 @@
 package Properties;
 
-import Properties.BreakProperties.BreakDown;
-import Properties.FlyProperties.Fly;
-import Properties.KillProperties.TryKillPlayer;
-import javafx.scene.image.Image;
+import MagicAtributes.BallProperties;
+import MagicAtributes.Bladger;
 import javafx.scene.image.ImageView;
 
 
 public class ActionsForBalls {
-    public int ballSize;
-    public int points;
+    private String ballName;
     public int dangerous;
-    public String ballName;
-    public int startSpeed;
-    protected Fly fly;
-    protected BreakDown breakDown;
-    protected TryKillPlayer tryKillPlayer;
+    BallProperties ballProperties;
     public ImageView imageView;
 
-   /* public int getBallSize() {
-        return ballSize;
+    public void setBallProperties(BallProperties ballProperties) {
+        this.ballProperties = ballProperties;
     }
 
-    public int getDangerous() {
-        return dangerous;
+    public BallProperties getBallProperties() {
+        return ballProperties;
     }
 
-    public int getPoints() {
-        return points;
+    public void setBallName(String ballName) {
+        this.ballName = ballName;
     }
 
     public String getBallName() {
         return ballName;
-    }*/
-
- /*   protected void setBallSize(double ballSize) {
-        this.ballSize = ballSize;
     }
 
-    protected void setDangerous(int dangerous) {
-        this.dangerous = dangerous;
+    public int getPoints() {
+        return ballProperties.getPoints();
     }
-
-    protected void setPoints(int points) {
-        this.points = points;
-    }
-
-    protected void setBallName(String ballName) {
-        this.ballName = ballName;
-    }*/
-
     public ImageView getImageView() {
         return imageView;
     }
@@ -59,14 +39,14 @@ public class ActionsForBalls {
     }
 
     public void actionFly() {
-        fly.fly();
+        ballProperties.getFly().fly();
     }
 
     public void actionBreakDown(String namePlayer){
-        breakDown.toHarm(namePlayer);
+        ballProperties.getBreakDown().toHarm(namePlayer);
     }
 
     public void actionTryKill(String nameKiller){
-        tryKillPlayer.kill(nameKiller);
+        ballProperties.getTryKillPlayer().kill(nameKiller);
     }
 }

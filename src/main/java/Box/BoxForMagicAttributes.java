@@ -1,5 +1,6 @@
 package Box;
 
+import MagicAtributes.BallProperties;
 import MagicAtributes.MagicAttributes;
 import javafx.scene.image.ImageView;
 
@@ -49,9 +50,7 @@ public class BoxForMagicAttributes implements MagicAttributes {
     public void setBallName(String name) {
     }
 
-    @Override
-    public void setBallSize(int ballSize) {
-    }
+
 
     @Override
     public MagicAttributes setDangerous(int dangerous) {
@@ -59,9 +58,9 @@ public class BoxForMagicAttributes implements MagicAttributes {
     }
 
     @Override
-    public MagicAttributes setPoints(int points) {
-        return null;
+    public void setBallProperties(BallProperties ballProperties) {
     }
+
 
     @Override
     public int getBallSize() {

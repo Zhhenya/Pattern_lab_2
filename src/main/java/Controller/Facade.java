@@ -5,6 +5,9 @@ import Box.BoxIterator;
 import Characters.*;
 import Characters.Character;
 import MagicAtributes.*;
+import Properties.BreakProperties.BreakByBall;
+import Properties.FlyProperties.FlyForBall;
+import Properties.KillProperties.KillWithABall;
 import Teams.Team;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -123,10 +126,11 @@ public class Facade {
 
 
     public void createBall(MagicAttributes magicAttributes, String name, int ballSize, int dangerous, int points){
+        BallProperties ballProperties = BallPropertiesFactory.getBallProperties(new FlyForBall(), new BreakByBall(),
+                new KillWithABall(), ballSize, points);
+        magicAttributes.setBallProperties(ballProperties);
         magicAttributes.setBallName(name);
-        magicAttributes.setBallSize(ballSize);
         magicAttributes.setDangerous(dangerous);
-        magicAttributes.setPoints(points);
     }
 
     public void createBallForOneTraining(Snitch snitch, Bladger bladger1, Bladger bladger2, Quaffle quaffle){

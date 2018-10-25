@@ -10,16 +10,7 @@ import javafx.scene.image.ImageView;
 
 public class Snitch extends ActionsForBalls implements MagicAttributes{
     public Snitch(){
-        setBallName("Snitch");
-        setBallSize(10);
-        setDangerous(1);
-        setPoints(150);
         imageView = new ImageView(new Image("characters/balls/snitch1.gif"));
-        fly = new FlyWithWings();
-        breakDown = new BreakByBall();
-        tryKillPlayer = new KillWithABall();
-
-
     }
 
     @Override
@@ -33,30 +24,14 @@ public class Snitch extends ActionsForBalls implements MagicAttributes{
     }
 
     @Override
-    public void setBallName(String name) {
-        this.ballName = name;
-    }
-
-    @Override
-    public void setBallSize(int ballSizesize) {
-        this.ballSize = ballSizesize;
-    }
-
-    @Override
-    public Snitch setDangerous(int dangerous) {
+    public MagicAttributes setDangerous(int dangerous) {
         this.dangerous = dangerous;
         return this;
     }
 
     @Override
-    public Snitch setPoints(int points) {
-        this.points = points;
-        return this;
-    }
-
-    @Override
     public int getBallSize() {
-        return ballSize;
+        return getBallProperties().getBallSize();
     }
 
     @Override
@@ -65,13 +40,13 @@ public class Snitch extends ActionsForBalls implements MagicAttributes{
     }
 
     @Override
-    public int getPoints() {
-        return points;
+    public String getBallName() {
+        return super.getBallName();
     }
 
     @Override
-    public String getBallName() {
-        return ballName;
+    public void setBallName(String ballName) {
+        super.setBallName(ballName);
     }
 
     @Override

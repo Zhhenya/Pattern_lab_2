@@ -14,11 +14,11 @@ public class ConsoleUI implements UI {
 
     Facade facade;
 
-    public ConsoleUI(Facade facade){
+    public void setFacade(Facade facade){
         this.facade = facade;
     }
 
-
+    public ConsoleUI(){};
 
     @Override
     public void initialize() {
@@ -28,7 +28,7 @@ public class ConsoleUI implements UI {
     @Override
     public void firstFrame() {
         facade.first();
-        System.out.println("Гарри, ты кажется не здоров...\\nТы не можешь играть в таком состоянии!!!");
+        System.out.println("Гарри, ты кажется не здоров...\nТы не можешь играть в таком состоянии!!!");
         System.out.println("...раздаются покашливания...");
         System.out.println("...(Дамблдор): Ему нужно посетить мадам Помпфри! Немедленно!!!");
         getInfoAboutPlayer(facade.getCatcher());

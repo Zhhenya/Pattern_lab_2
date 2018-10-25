@@ -8,40 +8,17 @@ import Properties.KillProperties.KillWithABall;
 
 public class Quaffle extends ActionsForBalls implements MagicAttributes {
     public Quaffle(){
-        fly = new FlyForBall();
-        breakDown = new BreakByBall();
-        tryKillPlayer = new KillWithABall();
-     /*   setBallName("Quaffle");
-        setBallSize(30);
-        setPoints(10);
-        setDangerous(3);*/
     }
 
     @Override
-    public void setBallName(String name) {
-        this.ballName = name;
-    }
-
-    @Override
-    public void setBallSize(int ballSizesize) {
-        this.ballSize = ballSizesize;
-    }
-
-    @Override
-    public Quaffle setDangerous(int dangerous) {
+    public MagicAttributes setDangerous(int dangerous) {
         this.dangerous = dangerous;
         return this;
     }
 
     @Override
-    public Quaffle setPoints(int points) {
-        this.points = points;
-        return this;
-    }
-
-    @Override
     public int getBallSize() {
-        return ballSize;
+        return getBallProperties().getBallSize();
     }
 
     @Override
@@ -50,13 +27,13 @@ public class Quaffle extends ActionsForBalls implements MagicAttributes {
     }
 
     @Override
-    public int getPoints() {
-        return points;
+    public String getBallName() {
+        return super.getBallName();
     }
 
     @Override
-    public String getBallName() {
-        return ballName;
+    public void setBallName(String ballName) {
+        super.setBallName(ballName);
     }
 
     @Override

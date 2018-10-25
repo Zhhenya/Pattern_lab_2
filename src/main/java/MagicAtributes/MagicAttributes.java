@@ -4,10 +4,9 @@ import Box.BoxIterator;
 import javafx.scene.image.ImageView;
 
 public interface MagicAttributes {
-    void setBallName(String name);
-    void setBallSize(int ballSize);
+    void setBallName(String ballName);
     MagicAttributes setDangerous(int dangerous);
-    MagicAttributes setPoints(int points);
+    void setBallProperties(BallProperties ballProperties);
 
     int getBallSize();
     int getDangerous();
