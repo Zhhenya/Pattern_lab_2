@@ -106,7 +106,7 @@ public class BoxForMagicAttributes implements MagicAttributes {
 
     }
 
-    public String getBallsInfo() {
+   /* public String getBallsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
         for (MagicAttributes attributes : magicAttributes) {
             stringBuilder.append(attributes.getBallSize());
@@ -115,7 +115,7 @@ public class BoxForMagicAttributes implements MagicAttributes {
             stringBuilder.append(attributes.getPoints());
         }
         return stringBuilder.toString();
-    }
+    }*/
 
     @Override
     public BoxIterator createBoxIterator() {

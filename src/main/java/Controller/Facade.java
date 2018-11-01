@@ -4,14 +4,18 @@ import Box.BoxForMagicAttributes;
 import Box.BoxIterator;
 import Characters.*;
 import Characters.Character;
+import ChooseTeam.ChooseTeam;
 import MagicAtributes.*;
 import Properties.BreakProperties.BreakByBall;
 import Properties.FlyProperties.FlyForBall;
 import Properties.KillProperties.KillWithABall;
 import Teams.Team;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import poolBox.Pool;
 
+import java.util.List;
 import java.util.Random;
 
 public class Facade {
@@ -21,24 +25,31 @@ public class Facade {
     Bladger bladgerFirst = new Bladger();
     Bladger bladgerSecond = new Bladger();
     Team team;
-    BoxForMagicAttributes boxForMagicAttributes = new BoxForMagicAttributes();
+    Pool box = Pool.getPool();
+   // BoxForMagicAttributes boxForMagicAttributes = new BoxForMagicAttributes();
     ImageView imageView;
 
-    public Facade(){
-        team = new Team();
-        createCommandGriffindor(team);
-    }
+
 
     public Team getTeam() {
         return team;
     }
 
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public Facade(){
+
+    }
+
     public Catcher getCatcher() {
-        return team.getCatcher();
+        return team.catcher;
     }
 
     public void setCatcher(Catcher catcher) {
-        this.team.setCatcher(catcher);
+        team.catcher = catcher;
     }
 
     public Snitch getSnitch() {
@@ -73,13 +84,13 @@ public class Facade {
         this.bladgerSecond = bladgerSecond;
     }
 
-    public BoxForMagicAttributes getBoxForMagicAttributes() {
+    /*public BoxForMagicAttributes getBoxForMagicAttributes() {
         return boxForMagicAttributes;
-    }
+    }*/
 
-    public void setBoxForMagicAttributes(BoxForMagicAttributes boxForMagicAttributes) {
+    /*public void setBoxForMagicAttributes(BoxForMagicAttributes boxForMagicAttributes) {
         this.boxForMagicAttributes = boxForMagicAttributes;
-    }
+    }*/
 
     public ImageView getImageView() {
         return imageView;
@@ -96,26 +107,25 @@ public class Facade {
 
     public void first(){
         imageView = new ImageView(new Image("images/images.jpg"));
-        team.getCatcher().setImageView(new ImageView(new Image("images/1.jpg")));
-        team.getCatcher().getImage().setLayoutY(30);
-        team.getCatcher().setNamePlayer("Гарри Поттер");
+        team.catcher.setImageView(new ImageView(new Image("images/1.jpg")));
+        team.catcher.getImage().setLayoutY(30);
         imageView.setLayoutX(450);
         imageView.setLayoutY(30);
     }
 
     public void second(){
-        applyAdapter(team.getCatcher(), new ImageView(new Image("images/harry.png")));
+        applyAdapter(team.catcher, new ImageView(new Image("images/harry.png")));
     }
 
-    public BoxIterator afterSecondFrame(){
+    public void afterSecondFrame(){
         imageView = new ImageView(new Image("images/stadionjpg.jpg"));
         imageView.setLayoutX(100);
         imageView.setLayoutY(50);
 
-        BoxIterator boxIterator = boxForMagicAttributes.createBoxIterator();
+      /*  BoxIterator boxIterator = boxForMagicAttributes.createBoxIterator();
         boxForMagicAttributes.setBoxName("Общая коробка");
         boxIterator.setBoxForMagicAttributes(boxForMagicAttributes);
-        return boxIterator;
+        return boxIterator;*/
     }
 
     public void third(){
@@ -168,8 +178,11 @@ public class Facade {
     }
 
     public void getListOfMagicAttribute(){
-        BoxForMagicAttributes box = new BoxForMagicAttributes();
-        box.setBoxName("Мячи для тренировок");
+     //   BoxForMagicAttributes box = new BoxForMagicAttributes();
+      //  box.setBoxName("Мячи для тренировок");
+
+
+
         Snitch snitch1 =  new Snitch();
         Bladger bladger1 =  new Bladger();
         Bladger bladger2 =  new Bladger();
@@ -178,72 +191,12 @@ public class Facade {
         createBallForOneTraining(snitch1, bladger1, bladger2, quaffle1);
         box.add(snitch1, bladger1, bladger2, quaffle1);
         createBallForOneGame(snitch, bladgerFirst, bladgerSecond, quaffle);
-        boxForMagicAttributes.add(snitch, quaffle, bladgerFirst, bladgerSecond, box);
+        box.add(snitch, quaffle, bladgerFirst, bladgerSecond);
     }
 
-    public void createCommandGriffindor(Team Griffindor){
-        Griffindor.setTeamName("Гриффиндор");
-        Hunter hunter = new Hunter();
-        hunter.setNamePlayer("Кети Белл");
-        Griffindor.setFirstHunter(hunter);
 
-        hunter = new Hunter();
-        hunter.setNamePlayer("Демельза Робинс");
-        Griffindor.setSecondHunter(hunter);
 
-        hunter = new Hunter();
-        hunter.setNamePlayer("Джинни Уизли");
-        Griffindor.setThirdHunter(hunter);
-
-        Beater beater = new Beater();
-        beater.setNamePlayer("Ричи Кут");
-        Griffindor.setFirstBeater(beater);
-
-        beater = new Beater();
-        beater.setNamePlayer("Джимми Пикс");
-        Griffindor.setSecondBeater(beater);
-
-        Catcher catcher = new Catcher();
-        catcher.setNamePlayer("Гарри Поттер");
-        Griffindor.setCatcher(catcher);
-
-        Goalkeeper goalkeeper = new Goalkeeper();
-        goalkeeper.setNamePlayer("Рон Уизли");
-        Griffindor.setGoalkeeper(goalkeeper);
-
-    }
-
-    public void createSlitherin(Team Slitherin){
-        Hunter hunter = new Hunter();
-        hunter.setNamePlayer("Urghart");
-        Slitherin.setFirstHunter(hunter);
-
-        hunter = new Hunter();
-        hunter.setNamePlayer("Veizy");
-        Slitherin.setSecondHunter(hunter);
-
-        hunter = new Hunter();
-        hunter.setNamePlayer("Kassius Worringthon");
-        Slitherin.setThirdHunter(hunter);
-
-        Beater beater = new Beater();
-        beater.setNamePlayer("Vinsent Greb");
-        Slitherin.setFirstBeater(beater);
-
-        beater = new Beater();
-        beater.setNamePlayer("Greggory Goil");
-        Slitherin.setSecondBeater(beater);
-
-        Catcher catcher = new Catcher();
-        catcher.setNamePlayer("Draco Malfoy");
-        Slitherin.setCatcher(catcher);
-
-        Goalkeeper goalkeeper = new Goalkeeper();
-        goalkeeper.setNamePlayer("Mailz Bletchly");
-        Slitherin.setGoalkeeper(goalkeeper);
-    }
-
-    public void playGame(){
+    /*public void playGame(){
         team.getFirstBeater().goal(
                 team.getFirstBeater().getNamePlayer(), quaffle, team.getTeamName());
         team.countPoints(quaffle.getPoints());
@@ -259,6 +212,6 @@ public class Facade {
 
 
 
-    }
+    }*/
 
 }

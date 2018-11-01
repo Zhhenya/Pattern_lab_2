@@ -6,12 +6,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
    <children>
-      <Pane fx:id="broomPane" prefHeight="200.0" prefWidth="349.0" />
-      <Pane fx:id="cloakPane" layoutY="200.0" prefHeight="200.0" prefWidth="349.0" />
-      <Button fx:id="simpleOutfitButton" layoutX="384.0" layoutY="28.0" mnemonicParsing="false" onAction="#simpleOutfitButtonClick" text="Простое &#10;обмундирование" textAlignment="CENTER" />
-      <Button fx:id="advancedOutfitButton" layoutX="384.0" layoutY="79.0" mnemonicParsing="false" onAction="#advancedOutfitButtonClick" text="Продвинутое&#10;обмундирование" textAlignment="CENTER" />
+      <Pane fx:id="simpleBroomPane" layoutY="-1.0" prefHeight="193.0" prefWidth="315.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="-1.0" />
+      <Pane fx:id="simpleCloakPane" layoutY="200.0" prefHeight="200.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="200.0" />
+      <Pane fx:id="speedBroomPane" layoutX="314.0" prefHeight="193.0" prefWidth="280.0" />
+      <Pane fx:id="protectedCloakPane" layoutX="314.0" layoutY="200.0" prefHeight="193.0" prefWidth="280.0" />
+      <RadioButton fx:id="simpleBroomRaioButton" layoutX="587.0" layoutY="33.0" mnemonicParsing="false" onAction="#simpleBroomRaioButtonClick" text="стандартная метла" />
+      <RadioButton fx:id="speedBroomRadioButton" layoutX="587.0" layoutY="65.0" mnemonicParsing="false" onAction="#speedBroomRadioButtonClick" text="скоростная метла" />
+      <RadioButton fx:id="simpleCloakRadioButton" layoutX="587.0" layoutY="96.0" mnemonicParsing="false" onAction="#simpleCloakRadioButtonClick" text="стандартная мантия" />
+      <RadioButton fx:id="protectedCloakRadioButton" layoutX="587.0" layoutY="129.0" mnemonicParsing="false" onAction="#protectedCloakRadioButtonClick" text="защитная мантия" />
+      <Button fx:id="selectButton" layoutX="614.0" layoutY="181.0" mnemonicParsing="false" onAction="#selectButtonClick" text="Выбрать" />
    </children>
 </AnchorPane>

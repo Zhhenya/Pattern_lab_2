@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TeamForm">
+   <children>
+      <Button fx:id="griffindorButton" layoutX="65.0" layoutY="14.0" mnemonicParsing="false" onAction="#griffindorButtonClick" text="Гриффиндор" />
+      <Button fx:id="slitherinButton" layoutX="429.0" layoutY="14.0" mnemonicParsing="false" onAction="#slitherinButtonClick" text="Слизерин" />
+      <Pane fx:id="griffindorPane" layoutX="17.0" layoutY="48.0" prefHeight="338.0" prefWidth="274.0" />
+      <Pane fx:id="slitherinPane" layoutX="304.0" layoutY="48.0" prefHeight="338.0" prefWidth="282.0" />
+   </children>
+</AnchorPane>

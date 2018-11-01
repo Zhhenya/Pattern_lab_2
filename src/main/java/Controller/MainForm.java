@@ -5,13 +5,17 @@ import Box.BoxIterator;
 import Characters.Catcher;
 import Characters.Character;
 import Characters.HealthAdapterForPlayer;
+import ChooseTeam.*;
 import MagicAtributes.*;
+import Outfit.GetterOutfit;
+import Outfit.Outfit;
 import UI.UI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -22,6 +26,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import poolBox.Pool;
 
 import java.io.IOException;
 
@@ -31,7 +36,11 @@ public class MainForm implements UI {
     public TextArea dialog;
     public TextArea characteristics;
     public Button choose;
+    public Button teamButton;
     private int countOfFrames;
+    TeamForm teamForm;
+    OutfitForm outfitForm;
+    Outfit outfit;
 
 
     private Facade facade;
@@ -43,6 +52,43 @@ public class MainForm implements UI {
 
 
     public void nextFrame(ActionEvent actionEvent) {
+
+        if(outfitForm!= null && outfitForm.outfit != null){
+            outfit = outfit;
+            outfitForm.outfit = null;
+        } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Что-то пошло не так!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Вы не выбрали экипировку");
+            alert.show();
+            return;
+        }
+
+
+
+
+        if(teamForm != null && teamForm.getTeam() != null) {
+            if (teamForm.getTeam() == KeyWords.Griffindor) {
+                ChooseTeam chooseTeam = new Griffindor();
+                facade.setTeam(((Griffindor) chooseTeam).createTeam());
+            }
+            if (teamForm.getTeam() == KeyWords.Slitherin) {
+                ChooseTeam chooseTeam = new Slitherin();
+                facade.setTeam(((Slitherin) chooseTeam).createTeam());
+            }
+        }
+
+        if(facade.getTeam() == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Что-то пошло не так!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Вы не выбрали команду");
+            alert.show();
+            return;
+        }
+
+
         switch (countOfFrames) {
             case 1: firstFrame();
                 break;
@@ -95,17 +141,17 @@ public class MainForm implements UI {
     public void afterSecondFrame(){
         remove();
         dialog.setText("Выпускаем мячи. Игра началась");
-        BoxIterator boxIterator = facade.afterSecondFrame();
+     //   BoxIterator boxIterator = facade.afterSecondFrame();
         pane.getChildren().add(facade.getImageView());
         facade.getListOfMagicAttribute();
-        findAllMagicAttributes(boxIterator);
+        findAllMagicAttributes(Pool.getPool());
         countOfFrames++;
 
     }
 
     @Override
     public void findAllMagicAttributes(BoxIterator boxIterator){
-        characteristics.appendText("\n\n" + boxIterator.getBox().getBoxName() + "\n");
+       /* characteristics.appendText("\n\n" + boxIterator.getBox().getBoxName() + "\n");
         while(boxIterator.hasNext()) {
             MagicAttributes attributes = boxIterator.getNext();
             BoxIterator boxIterator1 = attributes.createBoxIterator();
@@ -115,7 +161,13 @@ public class MainForm implements UI {
             }
             else
                 getInfoAboutBall(attributes);
-        }
+        }*/
+    }
+
+    public void findAllMagicAttributes(Pool pool){
+        characteristics.appendText("\n\n" + "коробка" + "\n");
+        for(MagicAttributes attributes : Pool.magicAttributes)
+            getInfoAboutBall(attributes);
     }
 
     public void thirdFrame() {
@@ -179,8 +231,7 @@ public class MainForm implements UI {
         Parent root = null;
         try {
             root = loader.load();
-          /*  OutfitForm outfitForm = loader.getController();
-            outfitForm.(facade);*/
+            outfitForm = loader.getController();
             Scene scene = new Scene(root);
             Stage changeOutfitWindow = new Stage();
             changeOutfitWindow.setScene(scene);
@@ -188,6 +239,31 @@ public class MainForm implements UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+    }
+
+    public void chooseTeam(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/forms/teamForm.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+            teamForm = loader.getController();
+            Scene scene = new Scene(root);
+            Stage changeOutfitWindow = new Stage();
+            changeOutfitWindow.setScene(scene);
+            changeOutfitWindow.show();
+
+
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
 

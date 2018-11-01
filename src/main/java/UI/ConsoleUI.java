@@ -9,6 +9,7 @@ import MagicAtributes.Bladger;
 import MagicAtributes.MagicAttributes;
 import MagicAtributes.Quaffle;
 import MagicAtributes.Snitch;
+import poolBox.Pool;
 
 public class ConsoleUI implements UI {
 
@@ -47,9 +48,9 @@ public class ConsoleUI implements UI {
 
     @Override
     public void afterSecondFrame() {
-        BoxIterator box = facade.afterSecondFrame();
+      //  BoxIterator box = facade.afterSecondFrame();
         facade.getListOfMagicAttribute();
-        findAllMagicAttributes(box);
+        findAllMagicAttributes(Pool.getPool());
         System.out.println();
         System.out.println();
         System.out.println("Выпускаем мячи. Игра началась");
@@ -118,7 +119,7 @@ public class ConsoleUI implements UI {
 
     @Override
     public void findAllMagicAttributes(BoxIterator boxIterator){
-        System.out.println("\n\n" + boxIterator.getBox().getBoxName() + "\n");
+      /*  System.out.println("\n\n" + boxIterator.getBox().getBoxName() + "\n");
         while(boxIterator.hasNext()) {
             MagicAttributes attributes = boxIterator.getNext();
             BoxIterator boxIterator1 = attributes.createBoxIterator();
@@ -128,7 +129,14 @@ public class ConsoleUI implements UI {
             }
             else
                 getInfoAboutBall(attributes);
-        }
+        }*/
+    }
+
+
+    public void findAllMagicAttributes(Pool pool){
+        System.out.println("\n\n" + "коробка" + "\n");
+        for(MagicAttributes attributes : Pool.magicAttributes)
+            getInfoAboutBall(attributes);
     }
 
 
@@ -146,7 +154,7 @@ public class ConsoleUI implements UI {
         fifthFrame();
         sixFrame();
         sixFrame();
-        facade.playGame();
+     //   facade.playGame();
 
     }
 }

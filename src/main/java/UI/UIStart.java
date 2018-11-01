@@ -2,6 +2,7 @@ package UI;
 
 import Controller.Facade;
 import Controller.MainForm;
+import Controller.TeamForm;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,10 +19,10 @@ public class UIStart implements Application {
     public void startApplication(Facade facade) {
         FXMLLoader loader = new FXMLLoader();
         try {
-            loader.setLocation(getClass().getResource("/forms/mainForm.fxml"));
+            loader.setLocation(getClass().getResource("/forms/teamForm.fxml"));
             Parent root = loader.load();
-            MainForm mainForm = loader.getController();
-            mainForm.setFacade(facade);
+            TeamForm teamForm = loader.getController();
+            teamForm.setFacade(facade);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();

@@ -6,36 +6,36 @@ import Characters.Goalkeeper;
 import Characters.Hunter;
 
 public class Team {
-    private String teamName;
-    private Hunter firstHunter;
-    private Hunter secondHunter;
-    private Hunter thirdHunter;
-    private Goalkeeper goalkeeper;
-    private Catcher catcher;
-    private Beater firstBeater;
-    private Beater secondBeater;
-    int countOfPoints = 0;
+    public String teamName;
+    public Hunter firstHunter;
+    public Hunter secondHunter;
+    public Hunter thirdHunter;
+    public Goalkeeper goalkeeper;
+    public Catcher catcher;
+    public Beater firstBeater;
+    public Beater secondBeater;
+    public int countOfPoints = 0;
 
     public Team(){}
 
-    public void countPoints(int points){
+   /* public void countPoints(int points){
         countOfPoints += points;
     }
 
     public int getCountOfPoints() {
         return countOfPoints;
     }
-
+*/
     public Team(String teamName){
         this.teamName = teamName;
     }
 
 
-    public String getTeamName() {
+  /*  public String getTeamName() {
         return teamName;
-    }
+    }*/
 
-    public Hunter getFirstHunter() {
+  /*  public Hunter getFirstHunter() {
         return firstHunter;
     }
 
@@ -90,10 +90,10 @@ public class Team {
     public void setSecondBeater(Beater secondBeater) {
         this.secondBeater = secondBeater;
     }
-
-    public void setTeamName(String teamName) {
+*/
+  /*  public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
+*/
 
 }
