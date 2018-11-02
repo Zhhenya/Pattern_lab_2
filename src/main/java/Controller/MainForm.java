@@ -46,6 +46,7 @@ public class MainForm{
     public Outfit outfit;
 
     public Facade facade;
+    public Button outfitButton;
 
     public void setFacade(Facade facade) {
         this.facade = facade;
@@ -63,10 +64,10 @@ public class MainForm{
 
     public void nextFrame(ActionEvent actionEvent) {
 
-        if(outfitForm!= null && outfitForm.outfit != null){
-            outfit = outfit;
-            outfitForm.outfit = null;
-        } else{
+        if(outfitForm!= null && outfitForm.outfit != null && outfit == null){
+            outfit = outfitForm.outfit;
+            outfitButton.setVisible(false);
+        } else if(outfitForm == null && outfitForm.outfit == null && outfit == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Что-то пошло не так!!!");
             alert.setHeaderText(null);
@@ -99,7 +100,6 @@ public class MainForm{
     }
 
     public void initialize() {
-
         pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         ImageView imageView = new ImageView(new Image("images/say.jpg"));
         imageView.setLayoutX(150);

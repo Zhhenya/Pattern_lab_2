@@ -13,10 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -32,6 +29,7 @@ public class OutfitForm {
     public Button selectButton;
     public KeyWords selectedBroom = null;
     public KeyWords selectedCloak = null;
+    public AnchorPane anchorPane;
     GetterOutfit getterOutfit;
     OutfitBuilder builder;
     Outfit outfit;
@@ -45,6 +43,7 @@ public class OutfitForm {
     private CreateOutfit createOutfit;
 
     public void initialize(){
+        anchorPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
 
         /*

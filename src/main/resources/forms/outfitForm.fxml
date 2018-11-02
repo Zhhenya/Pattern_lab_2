@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
    <children>
       <Pane fx:id="simpleBroomPane" layoutY="-1.0" prefHeight="193.0" prefWidth="315.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="-1.0" />
       <Pane fx:id="simpleCloakPane" layoutY="200.0" prefHeight="200.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="200.0" />

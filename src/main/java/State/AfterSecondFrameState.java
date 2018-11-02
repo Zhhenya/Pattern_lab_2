@@ -1,6 +1,8 @@
 package State;
 
 import Controller.MainForm;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import poolBox.Pool;
 
 public class AfterSecondFrameState extends State {
@@ -22,8 +24,9 @@ public class AfterSecondFrameState extends State {
     public void afterSecondFrame() {
         form.remove();
         form.dialog.setText("Выпускаем мячи. Игра началась");
-
-        form.pane.getChildren().add(form.facade.getImageView());
+        ImageView imageView = new ImageView(new Image("images/stadionjpg.jpg"));
+        imageView.setLayoutX(150);
+        form.pane.getChildren().add(imageView);
         form.facade.getListOfMagicAttribute();
 
         form.facade.afterSecondFrame();
