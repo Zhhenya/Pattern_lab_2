@@ -125,7 +125,7 @@ public class ConsoleUI implements UI {
             BoxIterator boxIterator1 = attributes.createBoxIterator();
             if(boxIterator1 != null) {
                 boxIterator1.setBoxForMagicAttributes((BoxForMagicAttributes) attributes);
-                findAllMagicAttributes(boxIterator1);
+                findAllMagicAttributesFree(boxIterator1);
             }
             else
                 getInfoAboutBall(attributes);
@@ -135,7 +135,7 @@ public class ConsoleUI implements UI {
 
     public void findAllMagicAttributes(Pool pool){
         System.out.println("\n\n" + "коробка" + "\n");
-        for(MagicAttributes attributes : Pool.magicAttributes)
+        for(MagicAttributes attributes : pool.magicAttributesFree)
             getInfoAboutBall(attributes);
     }
 

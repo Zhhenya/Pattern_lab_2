@@ -11,32 +11,45 @@ import java.util.List;
 
 public final class Pool {
     private static Pool pool;
-    public  static List<MagicAttributes> magicAttributes = new ArrayList<>();
+    public  List<MagicAttributes> magicAttributesFree = new ArrayList<>();
+    public  List<MagicAttributes> magicAttributesUsed = new ArrayList<>();
 
-    public void add(MagicAttributes attributes) {
-        magicAttributes.add(attributes);
+
+    public  void add(MagicAttributes attributes) {
+        magicAttributesFree.add(attributes);
     }
-
-  /*  private Pool(MagicAttributes... magicAttributes) {
-       *//* super();*//*
-        add(magicAttributes);
-    }*/
 
     public void add(MagicAttributes... attributes) {
-        magicAttributes.addAll(Arrays.asList(attributes));
+        magicAttributesFree.addAll(Arrays.asList(attributes));
     }
 
-    public void remove(MagicAttributes attributes) {
-        magicAttributes.remove(attributes);
+    public  void remove(MagicAttributes attributes) {
+        magicAttributesFree.remove(attributes);
     }
 
-    public void remove(MagicAttributes... attributes) {
-        magicAttributes.remove(Arrays.asList(attributes));
+    public  void remove(MagicAttributes... attributes) {
+        magicAttributesFree.remove(Arrays.asList(attributes));
+    }
+
+    public void addInUsed(MagicAttributes attributes) {
+        magicAttributesUsed.add(attributes);
+    }
+
+    public void addInUsed(MagicAttributes... attributes) {
+        magicAttributesUsed.addAll(Arrays.asList(attributes));
+    }
+
+    public void removeInUsed(MagicAttributes attributes) {
+        magicAttributesUsed.remove(attributes);
+    }
+
+    public void removeInUsed(MagicAttributes... attributes) {
+        magicAttributesUsed.remove(Arrays.asList(attributes));
     }
 
 
     public void clear() {
-        magicAttributes.clear();
+        magicAttributesFree.clear();
     }
 
 
@@ -44,7 +57,7 @@ public final class Pool {
 
     public  String getBallsInfo() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (MagicAttributes attributes : magicAttributes) {
+        for (MagicAttributes attributes : magicAttributesFree) {
             stringBuilder.append(attributes.getBallSize());
             stringBuilder.append(attributes.getBallSize());
             stringBuilder.append(attributes.getDangerous());

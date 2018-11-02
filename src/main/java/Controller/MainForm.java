@@ -9,8 +9,11 @@ import ChooseTeam.*;
 import MagicAtributes.*;
 import Outfit.GetterOutfit;
 import Outfit.Outfit;
+import State.FirstFrameState;
+import State.*;
 import UI.UI;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -30,25 +33,32 @@ import poolBox.Pool;
 
 import java.io.IOException;
 
-public class MainForm implements UI {
+public class MainForm{
     public Button nextButton;
+
+    public State state;
     public Pane pane;
     public TextArea dialog;
     public TextArea characteristics;
-    public Button choose;
-    public Button teamButton;
-    private int countOfFrames;
-    TeamForm teamForm;
-    OutfitForm outfitForm;
-    Outfit outfit;
+    public int countOfFrames;
+    public TeamForm teamForm;
+    public OutfitForm outfitForm;
+    public Outfit outfit;
 
-
-    private Facade facade;
-
+    public Facade facade;
 
     public void setFacade(Facade facade) {
         this.facade = facade;
     }
+
+    public void changeState(State state){
+        this.state = state;
+    }
+
+    public State getState() {
+        return state;
+    }
+
 
 
     public void nextFrame(ActionEvent actionEvent) {
@@ -64,9 +74,6 @@ public class MainForm implements UI {
             alert.show();
             return;
         }
-
-
-
 
         if(teamForm != null && teamForm.getTeam() != null) {
             if (teamForm.getTeam() == KeyWords.Griffindor) {
@@ -89,128 +96,85 @@ public class MainForm implements UI {
         }
 
 
-        switch (countOfFrames) {
-            case 1: firstFrame();
-                break;
-            case 2: secondFrame();
-                break;
-            case 3: afterSecondFrame();
-                break;
-            case 4: thirdFrame();
-                break;
-            case 5: forthFrame();
-                break;
-            case 6: fifthFrame();
-                break;
-            case 7:sixFrame();
-                break;
-            case 8:sixFrame();
-                break;
-
-        }
     }
 
     public void initialize() {
+
         pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         ImageView imageView = new ImageView(new Image("images/say.jpg"));
         imageView.setLayoutX(150);
         pane.getChildren().add(imageView);
         dialog.setText("Объявляю матч открытым!!!");
-        countOfFrames++;
-    }
 
-    public void firstFrame() {
-        remove();
-        facade.first();
-        pane.getChildren().addAll(facade.getImageView(), facade.getCatcher().getImage());
-        dialog.setText("Гарри, ты кажется не здоров...\nТы не можешь играть в таком состоянии!!!");
-        getInfoAboutPlayer(facade.getCatcher());
-        countOfFrames++;
-    }
+        changeState(new FirstFrameState(this));
 
-    public void secondFrame() {
-        remove();
-        remove();
-        facade.second();
-        getInfoAboutPlayer(facade.getCatcher());
-        pane.getChildren().addAll(facade.getCatcher().getImage());
-        dialog.setText("Он может играть Теперь игроки готовы!!! \n Выпускаем мячи. Игра началась");
-        countOfFrames++;
-    }
+        nextButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                getState().firstFrame();
 
-    public void afterSecondFrame(){
-        remove();
-        dialog.setText("Выпускаем мячи. Игра началась");
-     //   BoxIterator boxIterator = facade.afterSecondFrame();
-        pane.getChildren().add(facade.getImageView());
-        facade.getListOfMagicAttribute();
-        findAllMagicAttributes(Pool.getPool());
-        countOfFrames++;
+                nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        getState().secondFrame();
 
-    }
+                        nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                getState().afterSecondFrame();
 
-    @Override
-    public void findAllMagicAttributes(BoxIterator boxIterator){
-       /* characteristics.appendText("\n\n" + boxIterator.getBox().getBoxName() + "\n");
-        while(boxIterator.hasNext()) {
-            MagicAttributes attributes = boxIterator.getNext();
-            BoxIterator boxIterator1 = attributes.createBoxIterator();
-            if(boxIterator1 != null) {
-                boxIterator1.setBoxForMagicAttributes((BoxForMagicAttributes) attributes);
-                findAllMagicAttributes(boxIterator1);
+                                nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        getState().thirdFrame();
+
+                                        nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent event) {
+                                                getState().forthFrame();
+
+                                                nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                                                    @Override
+                                                    public void handle(ActionEvent event) {
+                                                        getState().fifthFrame();
+
+                                                        nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                                                            @Override
+                                                            public void handle(ActionEvent event) {
+                                                                getState().sixFrame();
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
-            else
-                getInfoAboutBall(attributes);
-        }*/
+        });
+
     }
 
-    public void findAllMagicAttributes(Pool pool){
-        characteristics.appendText("\n\n" + "коробка" + "\n");
-        for(MagicAttributes attributes : Pool.magicAttributes)
+
+    public void findAllMagicAttributesFree(Pool pool){
+        characteristics.appendText("\n\n" + "Мячи в коробке" + "\n");
+        for(MagicAttributes attributes : pool.magicAttributesFree)
             getInfoAboutBall(attributes);
     }
 
-    public void thirdFrame() {
-        remove();
-        facade.third();
-        pane.getChildren().add(facade.getSnitch().getImageView());
-        dialog.setText("Ой! Что это?");
-        characteristics.setText("");
-        getInfoAboutBall(facade.getSnitch());
-        countOfFrames++;
+    public void findAllMagicAttributesUsed(Pool pool){
+        characteristics.appendText("\n\n" + "Мячи на поле" + "\n");
+        for(MagicAttributes attributes : pool.magicAttributesUsed)
+            getInfoAboutBall(attributes);
     }
 
-    public void forthFrame() {
-        remove();
-        dialog.setText("Кто-то заколдовал снитч!");
-        facade.applyDecoratorDangerous(facade.getSnitch());
-        pane.getChildren().add(facade.getSnitch().getImageView());
-        characteristics.setText("\n");
-        getInfoAboutBall(facade.getSnitch());
-        countOfFrames++;
-
-    }
-    public void fifthFrame(){
-        remove();
-        facade.applyDecoratorMinus(facade.getSnitch());
-        pane.getChildren().add(facade.getSnitch().getImageView());
-        characteristics.setText("");
-        getInfoAboutBall(facade.getSnitch());
-        countOfFrames++;
-    }
-    public void sixFrame(){
-        remove();
-        facade.applyDecoratorDangerous(facade.getSnitch());
-        pane.getChildren().add(facade.getSnitch().getImageView());
-        characteristics.setText("\n");
-        getInfoAboutBall(facade.getSnitch());
-        countOfFrames++;
-    }
-
-    private void remove() {
+    public void remove() {
         pane.getChildren().remove(pane.getChildren().size() - 1);
     }
-
     public void getInfoAboutPlayer(Character character){
         characteristics.setText("Игрок\n");
         characteristics.appendText("Имя: " + character.getNamePlayer() + "\n");
@@ -244,28 +208,4 @@ public class MainForm implements UI {
 
     }
 
-    public void chooseTeam(ActionEvent actionEvent) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/forms/teamForm.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-            teamForm = loader.getController();
-            Scene scene = new Scene(root);
-            Stage changeOutfitWindow = new Stage();
-            changeOutfitWindow.setScene(scene);
-            changeOutfitWindow.show();
-
-
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-    }
 }

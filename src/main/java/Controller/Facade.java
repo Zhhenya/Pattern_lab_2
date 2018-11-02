@@ -25,6 +25,11 @@ public class Facade {
     Bladger bladgerFirst = new Bladger();
     Bladger bladgerSecond = new Bladger();
     Team team;
+
+    public Pool getBox() {
+        return box;
+    }
+
     Pool box = Pool.getPool();
    // BoxForMagicAttributes boxForMagicAttributes = new BoxForMagicAttributes();
     ImageView imageView;
