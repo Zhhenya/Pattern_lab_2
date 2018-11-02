@@ -35,8 +35,7 @@ public class MainForm implements UI {
     public Pane pane;
     public TextArea dialog;
     public TextArea characteristics;
-    public Button choose;
-    public Button teamButton;
+    public Button outfitButton;
     private int countOfFrames;
     TeamForm teamForm;
     OutfitForm outfitForm;
@@ -53,10 +52,12 @@ public class MainForm implements UI {
 
     public void nextFrame(ActionEvent actionEvent) {
 
-        if(outfitForm!= null && outfitForm.outfit != null){
-            outfit = outfit;
+        if(outfitForm!= null && outfitForm.outfit != null && outfit == null){
+            outfit = outfitForm.outfit;
             outfitForm.outfit = null;
-        } else{
+            outfitButton.setVisible(false);
+        } else
+            if(outfitForm == null && outfitForm.outfit == null && outfit == null ){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Что-то пошло не так!!!");
             alert.setHeaderText(null);
@@ -141,8 +142,9 @@ public class MainForm implements UI {
     public void afterSecondFrame(){
         remove();
         dialog.setText("Выпускаем мячи. Игра началась");
-     //   BoxIterator boxIterator = facade.afterSecondFrame();
-        pane.getChildren().add(facade.getImageView());
+        ImageView imageView = new ImageView(new Image("images/stadionjpg.jpg"));
+        imageView.setLayoutX(150);
+        pane.getChildren().add(imageView);
         facade.getListOfMagicAttribute();
         findAllMagicAttributes(Pool.getPool());
         countOfFrames++;
@@ -244,28 +246,4 @@ public class MainForm implements UI {
 
     }
 
-    public void chooseTeam(ActionEvent actionEvent) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/forms/teamForm.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-            teamForm = loader.getController();
-            Scene scene = new Scene(root);
-            Stage changeOutfitWindow = new Stage();
-            changeOutfitWindow.setScene(scene);
-            changeOutfitWindow.show();
-
-
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-    }
 }

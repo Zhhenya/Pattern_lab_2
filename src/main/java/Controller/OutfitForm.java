@@ -13,10 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -32,6 +29,7 @@ public class OutfitForm {
     public Button selectButton;
     public KeyWords selectedBroom = null;
     public KeyWords selectedCloak = null;
+    public AnchorPane anchorPane;
     GetterOutfit getterOutfit;
     OutfitBuilder builder;
     Outfit outfit;
@@ -45,6 +43,7 @@ public class OutfitForm {
     private CreateOutfit createOutfit;
 
     public void initialize(){
+        anchorPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
 
         /*
@@ -79,26 +78,6 @@ public class OutfitForm {
         getterOutfit = new GetterOutfit();
         builder = new OutfitBuilder();
     }
-
-/*
-
-    public void simpleOutfitButtonClick(ActionEvent actionEvent) {
-        createOutfit = new OutfitSBSC();
-        createOutfit.createBroom();
-        createOutfit.createCloak();
-        broomPane.getChildren().add(((OutfitSBSC) createOutfit).getBroom().getImageView());
-        cloakPane.getChildren().add(((OutfitSBSC) createOutfit).getCloak().getImageView());
-
-    }
-
-    public void advancedOutfitButtonClick(ActionEvent actionEvent) {
-        createOutfit = new OutfitABAC();
-        createOutfit.createBroom();
-        createOutfit.createCloak();
-        broomPane.getChildren().add(((OutfitABAC) createOutfit).getBroom().getImageView());
-        cloakPane.getChildren().add(((OutfitABAC) createOutfit).getCloak().getImageView());
-    }
-*/
 
     public CreateOutfit getGetterOutfit() {
         return createOutfit;
