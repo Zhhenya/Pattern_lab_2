@@ -79,26 +79,6 @@ public class OutfitForm {
         builder = new OutfitBuilder();
     }
 
-/*
-
-    public void simpleOutfitButtonClick(ActionEvent actionEvent) {
-        createOutfit = new OutfitSBSC();
-        createOutfit.createBroom();
-        createOutfit.createCloak();
-        broomPane.getChildren().add(((OutfitSBSC) createOutfit).getBroom().getImageView());
-        cloakPane.getChildren().add(((OutfitSBSC) createOutfit).getCloak().getImageView());
-
-    }
-
-    public void advancedOutfitButtonClick(ActionEvent actionEvent) {
-        createOutfit = new OutfitABAC();
-        createOutfit.createBroom();
-        createOutfit.createCloak();
-        broomPane.getChildren().add(((OutfitABAC) createOutfit).getBroom().getImageView());
-        cloakPane.getChildren().add(((OutfitABAC) createOutfit).getCloak().getImageView());
-    }
-*/
-
     public CreateOutfit getGetterOutfit() {
         return createOutfit;
     }

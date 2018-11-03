@@ -66,6 +66,7 @@ public class MainForm{
 
         if(outfitForm!= null && outfitForm.outfit != null && outfit == null){
             outfit = outfitForm.outfit;
+            outfitForm.outfit = null;
             outfitButton.setVisible(false);
         } else if(outfitForm == null && outfitForm.outfit == null && outfit == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

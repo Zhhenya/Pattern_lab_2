@@ -4,10 +4,12 @@ import ChooseTeam.*;
 import ChooseTeam.KeyWords;
 import FactoryMethod.*;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class TeamForm {
@@ -16,6 +18,7 @@ public class TeamForm {
     public Button slitherinButton;
     public Pane griffindorPane;
     public Pane slitherinPane;
+    public AnchorPane anchorPane;
     Facade facade;
 
     KeyWords chooseTeam = null;
@@ -27,7 +30,7 @@ public class TeamForm {
     }
 
     public void initialize(){
-
+        anchorPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         griffindorPane.getChildren().add(new ImageView(new Image("images/Гриффиндор.jpg")));
         slitherinPane.getChildren().add(new ImageView(new Image("images/Слизерин.jpg")));
 
