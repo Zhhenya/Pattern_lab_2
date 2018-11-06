@@ -6,16 +6,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OutfitForm">
    <children>
-      <Pane fx:id="simpleBroomPane" layoutY="-1.0" prefHeight="193.0" prefWidth="315.0" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="-1.0" />
-      <Pane fx:id="simpleCloakPane" layoutY="200.0" prefHeight="200.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="200.0" />
-      <Pane fx:id="speedBroomPane" layoutX="314.0" prefHeight="193.0" prefWidth="280.0" />
-      <Pane fx:id="protectedCloakPane" layoutX="314.0" layoutY="200.0" prefHeight="193.0" prefWidth="280.0" />
-      <RadioButton fx:id="simpleBroomRaioButton" layoutX="587.0" layoutY="33.0" mnemonicParsing="false" onAction="#simpleBroomRaioButtonClick" text="стандартная метла" />
-      <RadioButton fx:id="speedBroomRadioButton" layoutX="587.0" layoutY="65.0" mnemonicParsing="false" onAction="#speedBroomRadioButtonClick" text="скоростная метла" />
-      <RadioButton fx:id="simpleCloakRadioButton" layoutX="587.0" layoutY="96.0" mnemonicParsing="false" onAction="#simpleCloakRadioButtonClick" text="стандартная мантия" />
-      <RadioButton fx:id="protectedCloakRadioButton" layoutX="587.0" layoutY="129.0" mnemonicParsing="false" onAction="#protectedCloakRadioButtonClick" text="защитная мантия" />
-      <Button fx:id="selectButton" layoutX="614.0" layoutY="181.0" mnemonicParsing="false" onAction="#selectButtonClick" text="Выбрать" />
+      <Pane fx:id="simpleBroomPane" layoutY="-1.0" prefHeight="248.0" prefWidth="269.0" AnchorPane.bottomAnchor="253.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="449.0" AnchorPane.topAnchor="-1.0" />
+      <Pane fx:id="simpleCloakPane" layoutY="252.0" prefHeight="248.0" prefWidth="269.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="449.0" AnchorPane.topAnchor="252.0" />
+      <Pane fx:id="speedBroomPane" layoutX="277.0" prefHeight="248.0" prefWidth="269.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="protectedCloakPane" layoutX="277.0" layoutY="200.0" prefHeight="248.0" prefWidth="269.0" AnchorPane.bottomAnchor="0.0" />
+      <RadioButton fx:id="simpleBroomRadioButton" layoutX="581.0" layoutY="14.0" mnemonicParsing="false" onAction="#simpleBroomRaioButtonClick" text="стандартная метла" />
+      <RadioButton fx:id="speedBroomRadioButton" layoutX="581.0" layoutY="46.0" mnemonicParsing="false" onAction="#speedBroomRadioButtonClick" text="скоростная метла" />
+      <RadioButton fx:id="simpleCloakRadioButton" layoutX="581.0" layoutY="77.0" mnemonicParsing="false" onAction="#simpleCloakRadioButtonClick" text="стандартная мантия" />
+      <RadioButton fx:id="protectedCloakRadioButton" layoutX="581.0" layoutY="110.0" mnemonicParsing="false" onAction="#protectedCloakRadioButtonClick" text="защитная мантия" />
+      <Button fx:id="selectButton" layoutX="608.0" layoutY="141.0" mnemonicParsing="false" onAction="#selectButtonClick" text="Выбрать" />
+      <Pane fx:id="resultPaneBroom" layoutX="546.0" layoutY="207.0" prefHeight="138.0" prefWidth="166.0">
+         <children>
+            <Label fx:id="broomLabel" layoutX="69.0" layoutY="6.0" />
+         </children></Pane>
+      <Pane fx:id="resultPaneCloak" layoutX="546.0" layoutY="349.0" prefHeight="149.0" prefWidth="166.0">
+         <children>
+            <Label fx:id="cloakLabel" layoutX="62.0" layoutY="6.0" />
+         </children>
+      </Pane>
+      <Label layoutX="580.0" layoutY="177.0" prefHeight="17.0" prefWidth="166.0" text="Выбранные элементы" />
    </children>
 </AnchorPane>

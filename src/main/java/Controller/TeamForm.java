@@ -3,12 +3,8 @@ package Controller;
 import ChooseTeam.*;
 import ChooseTeam.KeyWords;
 import FactoryMethod.*;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class TeamForm {
 
@@ -52,7 +47,6 @@ public class TeamForm {
         ChooseTeam choose = new Griffindor();
         facade.setTeam(choose.createTeam());
         showStory.show(facade);
-    //    openMainForm();
         stage.close();
     }
 
@@ -65,29 +59,10 @@ public class TeamForm {
         facade.setTeam(choose.createTeam());
 
         showStory.show(facade);
-        /*openSlitherinForm*/
 
         stage.close();
     }
 
-
-  /*  public void openMainForm(){
-        Stage stage = new Stage();
-
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            loader.setLocation(getClass().getResource("/forms/mainForm.fxml"));
-            Parent root = loader.load();
-            MainForm mainForm = loader.getController();
-            mainForm.setFacade(facade);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
     public KeyWords getTeam(){
         return chooseTeam;
     }

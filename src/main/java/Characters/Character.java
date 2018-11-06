@@ -8,6 +8,7 @@ import Properties.FlyProperties.FlyWithBroom;
 import Properties.KillProperties.KillByRival;
 import Properties.KillProperties.TryKillPlayer;
 import SpriteAnimation.SpriteAnimation;
+import Teams.Team;
 import javafx.animation.Animation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,10 +72,13 @@ public abstract class Character {
          fly.fly();
     }
 
-    public int catchBall(MagicAttributes ball){
+    public int catchBall(MagicAttributes ball, Team team){
         System.out.println(this.namePlayer + " поймал " + ball.getBallName());
-        if(ball.getPoints() == 150)
+        if(ball.getPoints() == 150) {
+            team.countOfPoints += 150;
+            System.out.println("Общий счет команды: " + team.countOfPoints);
             return ball.getPoints();
+        }
         else
             return 0;
     }
@@ -87,9 +91,12 @@ public abstract class Character {
         System.out.println(playerName + " dodge the " + ballName);
     }
 
-    public void goal(String playerName, MagicAttributes ball, String teamName){
+    public void goal(String playerName, MagicAttributes ball, Team team){
         System.out.println(playerName + " забил гол " + ball.getBallName());
-        System.out.println(teamName + " получает " + ball.getPoints() + " points");
+        System.out.println(team.teamName + " получает " + ball.getPoints() + " points");
+        team.countOfPoints += ball.getPoints();
+
+        System.out.println("Общий счет команды: " + team.countOfPoints);
     }
 
 

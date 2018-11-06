@@ -1,14 +1,13 @@
 package Controller;
 
-import ChooseTeam.KeyWords;
 import Outfit.CreateOutfit;
 import Outfit.GetterOutfit;
 import Outfit.Outfit;
 import Outfit.OutfitBuilder;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -22,14 +21,16 @@ public class OutfitForm {
     public Pane simpleCloakPane;
     public Pane speedBroomPane;
     public Pane protectedCloakPane;
-    public RadioButton simpleBroomRaioButton;
+    public RadioButton simpleBroomRadioButton;
     public RadioButton speedBroomRadioButton;
     public RadioButton simpleCloakRadioButton;
     public RadioButton protectedCloakRadioButton;
     public Button selectButton;
-    public KeyWords selectedBroom = null;
-    public KeyWords selectedCloak = null;
     public AnchorPane anchorPane;
+    public Pane resultPaneBroom;
+    public Pane resultPaneCloak;
+    public Label broomLabel;
+    public Label cloakLabel;
     GetterOutfit getterOutfit;
     OutfitBuilder builder;
     Outfit outfit;
@@ -64,11 +65,21 @@ public class OutfitForm {
         protectedCloakPane.getChildren().add(new ImageView(new Image("cloak/advancedCloak.jpg")));
 
 
+        cloakLabel.setText(simpleCloakRadioButton.getText());
+        ImageView imageView = new ImageView(new Image("cloak/simpleCloakMini.png"));
+        imageView.setLayoutY(25);
+        resultPaneCloak.getChildren().add(imageView);
+
+        broomLabel.setText(simpleBroomRadioButton.getText());
+        imageView = new ImageView(new Image("broom/simpleBroomMini.jpg"));
+        imageView.setLayoutY(25);
+        resultPaneBroom.getChildren().add(imageView);
+
         /*
         * добавление в ToggleGroup
         * */
-        simpleBroomRaioButton.setToggleGroup(broomToggleGroup);
-        simpleBroomRaioButton.setSelected(true);
+        simpleBroomRadioButton.setToggleGroup(broomToggleGroup);
+        simpleBroomRadioButton.setSelected(true);
         speedBroomRadioButton.setToggleGroup(broomToggleGroup);
 
         simpleCloakRadioButton.setToggleGroup(cloakToggleGroup);
@@ -122,14 +133,36 @@ public class OutfitForm {
     }
 
     public void protectedCloakRadioButtonClick(ActionEvent actionEvent) {
+        resultPaneCloak.getChildren().clear();
+        cloakLabel.setText(protectedCloakRadioButton.getText());
+        ImageView imageView = new ImageView(new Image("cloak/advancedCloakMini.jpg"));
+        imageView.setLayoutY(25);
+        resultPaneCloak.getChildren().addAll(cloakLabel, imageView);
     }
 
     public void simpleCloakRadioButtonClick(ActionEvent actionEvent) {
+        resultPaneCloak.getChildren().clear();
+        cloakLabel.setText(simpleCloakRadioButton.getText());
+        ImageView imageView = new ImageView(new Image("cloak/simpleCloakMini.png"));
+        imageView.setLayoutY(25);
+        resultPaneCloak.getChildren().addAll(cloakLabel, imageView);
     }
 
     public void speedBroomRadioButtonClick(ActionEvent actionEvent) {
+        resultPaneBroom.getChildren().clear();
+        broomLabel.setText(speedBroomRadioButton.getText());
+        ImageView imageView = new ImageView(new Image("broom/advancedBroomMini.jpg"));
+        imageView.setLayoutY(25);
+        resultPaneBroom.getChildren().addAll(broomLabel, imageView);
     }
 
+
     public void simpleBroomRaioButtonClick(ActionEvent actionEvent) {
+        resultPaneBroom.getChildren().clear();
+        broomLabel.setText(simpleBroomRadioButton.getText());
+        ImageView imageView = new ImageView(new Image("broom/simpleBroomMini.jpg"));
+        imageView.setLayoutY(25);
+        resultPaneBroom.getChildren().addAll(broomLabel, imageView);
+
     }
 }

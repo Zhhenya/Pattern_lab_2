@@ -196,22 +196,18 @@ public class Facade {
 
 
 
-    /*public void playGame(){
-        team.getFirstBeater().goal(
-                team.getFirstBeater().getNamePlayer(), quaffle, team.getTeamName());
-        team.countPoints(quaffle.getPoints());
-        team.getSecondBeater().goal(
-                team.getSecondBeater().getNamePlayer(), quaffle, team.getTeamName());
-        team.countPoints(quaffle.getPoints());
-        team.getThirdHunter().goal(
-                team.getThirdHunter().getNamePlayer(), quaffle, team.getTeamName());
-        team.countPoints(quaffle.getPoints());
-        int points = team.getCatcher().catchBall(snitch);
-        team.countPoints(points);
-        System.out.println("Очки, полученные за всю игру: " + team.getCountOfPoints());
+    public void playGame(){
+        team.firstBeater.goal(
+                team.firstBeater.getNamePlayer(), quaffle, team);
+        team.secondBeater.goal(
+                team.secondBeater.getNamePlayer(), quaffle, team);
+        team.thirdHunter.goal(
+                team.thirdHunter.getNamePlayer(), quaffle, team);
+        int points = team.catcher.catchBall(snitch);
+        System.out.println("Очки, полученные за всю игру: " + team.countOfPoints);
 
 
 
-    }*/
+    }
 
 }
