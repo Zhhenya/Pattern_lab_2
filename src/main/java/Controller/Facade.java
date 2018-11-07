@@ -203,7 +203,7 @@ public class Facade {
                 team.secondBeater.getNamePlayer(), quaffle, team);
         team.thirdHunter.goal(
                 team.thirdHunter.getNamePlayer(), quaffle, team);
-        int points = team.catcher.catchBall(snitch);
+        int points = team.catcher.catchBall(snitch, team);
         System.out.println("Очки, полученные за всю игру: " + team.countOfPoints);
 
 

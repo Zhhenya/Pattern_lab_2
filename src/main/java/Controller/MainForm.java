@@ -36,6 +36,7 @@ public class MainForm implements UI {
     public TextArea dialog;
     public TextArea characteristics;
     public Button outfitButton;
+    public Button saveButton;
     private int countOfFrames;
     TeamForm teamForm;
     OutfitForm outfitForm;
@@ -147,6 +148,7 @@ public class MainForm implements UI {
         pane.getChildren().add(imageView);
         facade.getListOfMagicAttribute();
         findAllMagicAttributes(Pool.getPool());
+        facade.playGame();
         countOfFrames++;
 
     }

@@ -93,7 +93,7 @@ public abstract class Character {
 
     public void goal(String playerName, MagicAttributes ball, Team team){
         System.out.println(playerName + " забил гол " + ball.getBallName());
-        System.out.println(team.teamName + " получает " + ball.getPoints() + " points");
+        System.out.println(team.teamName + " получает " + ball.getPoints() + " очков");
         team.countOfPoints += ball.getPoints();
 
         System.out.println("Общий счет команды: " + team.countOfPoints);
